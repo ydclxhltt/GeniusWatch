@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#define TEXTFIELD_HEIGHT    35.0
+#define BUTTON_HEIGHT       40.0
+
 typedef enum : NSUInteger
 {
     LeftItem,

@@ -7,11 +7,15 @@
 //
 
 #import "MainViewController.h"
+#import "SliderViewController.h"
 #import "BMapKit.h"
 
-#define MAP_SPACE_Y 80.0 * CURRENT_SCALE
-#define MAP_SPACE_X 40.0 * CURRENT_SCALE
-#define MAP_HEIGHT  300.0 * CURRENT_SCALE
+#define MAP_SPACE_Y     80.0 * CURRENT_SCALE
+#define MAP_SPACE_X     40.0 * CURRENT_SCALE
+#define MAP_HEIGHT      300.0 * CURRENT_SCALE
+#define MENU_SPAXCE_Y   44.0
+#define BABY_SPAXCE_Y   35.0
+#define SPACE_X         15.0
 
 @interface MainViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
 {
@@ -60,15 +64,17 @@
 {
     [self addMapView];
     [self addBgImageView];
+    [self addMenuButtons];
 }
 
+//添加背景
 - (void)addBgImageView
 {
     UIImageView *bgImageView = [CreateViewTool createImageViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) placeholderImage:[UIImage imageNamed:@"homepage_bg"]];
     [self.view addSubview:bgImageView];
 }
 
-
+//添加地图
 - (void)addMapView
 {
     self.mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(MAP_SPACE_X, MAP_SPACE_Y, self.view.frame.size.width - 2 * MAP_SPACE_X, MAP_HEIGHT)];
@@ -79,7 +85,50 @@
     [self.view addSubview:self.mapView];
 }
 
-#pragma mark 开始获取天气
+//添加菜单按钮
+- (void)addMenuButtons
+{
+    UIImage *image = [UIImage imageNamed:@"homepage_more_up"];
+    float width = image.size.width/3 * CURRENT_SCALE;
+    float height = image.size.height/3 * CURRENT_SCALE;
+    UIButton *moreButton = [CreateViewTool createButtonWithFrame:CGRectMake(self.view.frame.size.width - SPACE_X - width, MENU_SPAXCE_Y, width, height) buttonImage:@"homepage_more" selectorName:@"moreButtonPressed:" tagDelegate:self];
+    [self.view addSubview:moreButton];
+    
+    
+    UIImage *babyImage = [UIImage imageNamed:@"baby_head_up"];
+    float babyWidth = babyImage.size.width/3 * CURRENT_SCALE;
+    float babyHeight = babyImage.size.height/3 * CURRENT_SCALE;
+    
+    UIImageView *babyView = [CreateViewTool createImageViewWithFrame:CGRectMake(SPACE_X, BABY_SPAXCE_Y, babyWidth, babyHeight) placeholderImage:nil];
+    [self.view addSubview:babyView];
+    
+    UIButton *babyButton = [CreateViewTool  createButtonWithFrame:CGRectMake(0, 0, babyWidth, babyHeight) buttonImage:@"baby_head" selectorName:@"babyButtonPressed:" tagDelegate:self];
+    [CommonTool setViewLayer:babyButton withLayerColor:[UIColor whiteColor] bordWidth:1.0];
+    [CommonTool clipView:babyButton withCornerRadius:babyWidth/2];
+    [babyView addSubview:babyButton];
+    
+    UIImage *cellImage = [UIImage imageNamed:@"homepage_cell"];
+    float cellWidth = cellImage.size.width/3 * CURRENT_SCALE;
+    float cellHeight = cellImage.size.height/3 * CURRENT_SCALE;
+    UIImageView *cellImageView = [CreateViewTool createImageViewWithFrame:CGRectMake(babyButton.frame.size.width - cellWidth, babyButton.frame.size.height - cellHeight, cellWidth, cellHeight) placeholderImage:cellImage];
+    [babyView addSubview:cellImageView];
+}
+
+
+#pragma mark 点击头像按钮
+- (void)babyButtonPressed:(UIButton *)sender
+{
+    [[SliderViewController sharedSliderController] showLeftViewController];
+}
+
+#pragma mark 点击更多按钮
+- (void)moreButtonPressed:(UIButton *)sender
+{
+    [[SliderViewController sharedSliderController] showRightViewController];
+}
+
+
+#pragma mark 开始获取地址
 - (void)getCurrentAddress
 {
     [self setLocation];

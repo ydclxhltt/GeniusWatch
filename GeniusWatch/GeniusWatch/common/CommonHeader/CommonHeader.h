@@ -46,4 +46,13 @@
 //scale
 #define CURRENT_SCALE           SCREEN_WIDTH/375.0
 
+//侧滑相关设置
+#define RIGHTContentOffset      100.0 * SCREEN_WIDTH/320.0
+#define LeftContentOffset       275.0 * SCREEN_WIDTH/320.0
+#define LeftContentViewOffset   90 * SCREEN_WIDTH/320.0
+#define LeftJudgeOffset         160 * SCREEN_WIDTH/320.0
+#define USER_KEY                @"uesrname"
+#define PWD_KEY                 @"password"
+#define ISFIRST_KEY             @"isFirst"
+
 #endif

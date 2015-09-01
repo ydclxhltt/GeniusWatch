@@ -66,7 +66,7 @@
     UIImage *image_down = [UIImage imageNamed:[imageName stringByAppendingString:@"_down"]];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     //button.frame = CGRectMake(x, 0, image_up.size.width/2, image_up.size.height/2);
-    button.frame = CGRectMake(0, 0, image_up.size.width, image_up.size.height);
+    button.frame = CGRectMake(0, 0, image_up.size.width/2, image_up.size.height/2);
     [button setBackgroundImage:image_up forState:UIControlStateNormal];
     [button setBackgroundImage:image_down forState:UIControlStateHighlighted];
     [button setBackgroundImage:image_down forState:UIControlStateSelected];

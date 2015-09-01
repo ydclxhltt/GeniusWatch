@@ -35,4 +35,5 @@ typedef enum : NSUInteger
  *  取消请求方法
  */
 - (void)cancelRequest;
+
 @end

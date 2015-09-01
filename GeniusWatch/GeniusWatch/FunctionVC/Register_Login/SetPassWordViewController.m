@@ -7,12 +7,12 @@
 //
 
 #import "SetPassWordViewController.h"
+#import "LoginViewController.h"
 
 #define TEXTFIELD_Y         NAVBAR_HEIGHT + 15.0
 #define ADD_Y               10.0
 #define SPACE_X             20.0 * CURRENT_SCALE
-#define TEXTFIELD_HEIGHT    35.0
-#define BUTTON_HEIGHT       40.0
+
 
 
 @interface SetPassWordViewController ()<UITextFieldDelegate>
@@ -33,12 +33,14 @@
     // Do any additional setup after loading the view.
 }
 
+#pragma mark 初始化UI
 - (void)initUI
 {
     [self addTextFields];
     [self addSureButton];
 }
 
+//添加输入框
 - (void)addTextFields
 {
     start_y = TEXTFIELD_Y;
@@ -61,7 +63,7 @@
     start_y += _pwdTextField2.frame.size.height + 2 * ADD_Y;
 }
 
-
+//添加提交按钮
 - (void)addSureButton
 {
     UIButton *sureButton = [CreateViewTool createButtonWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 2 * SPACE_X, BUTTON_HEIGHT) buttonTitle:@"确定" titleColor:[UIColor whiteColor] normalBackgroundColor:APP_MAIN_COLOR highlightedBackgroundColor:[UIColor grayColor] selectorName:@"sureButtonPressed:" tagDelegate:self];
@@ -71,6 +73,7 @@
     
 }
 
+#pragma mark 提交按钮点击
 - (void)sureButtonPressed:(UIButton *)sender
 {
     if (![self isCanCommit])
@@ -80,11 +83,14 @@
     else
     {
         //设置密码
-        [self dismissViewControllerAnimated:YES completion:^{}];
+        //[self dismissViewControllerAnimated:YES completion:^{}];
+        NSArray *array = self.navigationController.viewControllers;
+        UIViewController *viewController = ([array[1] isKindOfClass:[LoginViewController class]]) ? array[1] : array[0];
+        [self.navigationController popToViewController:viewController animated:YES];
     }
 }
 
-
+//验证是否合法
 - (BOOL)isCanCommit
 {
     NSString *passwordStr1 = _pwdTextField1.text;
@@ -111,6 +117,7 @@
     return YES;
 }
 
+#pragma mark  UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];

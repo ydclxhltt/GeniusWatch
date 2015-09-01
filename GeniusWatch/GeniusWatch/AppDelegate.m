@@ -16,12 +16,7 @@
 #import "BMapKit.h"
 #import "LoginViewController.h"
 
-#define LeftContentOffset       275.0 * SCREEN_WIDTH/320.0
-#define LeftContentViewOffset   90 * SCREEN_WIDTH/320.0
-#define LeftJudgeOffset         160 * SCREEN_WIDTH/320.0
-#define USER_KEY                @"uesrname"
-#define PWD_KEY                 @"password"
-#define ISFIRST_KEY             @"isFirst"
+
 
 @interface AppDelegate()<BMKGeneralDelegate>
 {
@@ -45,10 +40,24 @@
     [mapManager start:BAIDU_MAP_KEY generalDelegate:self];
     
     self.window =[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self.window makeKeyAndVisible];
+    [self addLoginView];
     
-    LeftViewController *leftVC = [[LeftViewController alloc] init];
-    [SliderViewController sharedSliderController].LeftVC = leftVC;
-    [SliderViewController sharedSliderController].MainVC = [[MainViewController alloc] init];
+    //添加登录成功,注销通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSucess:) name:@"LoginSucess" object:nil];
+    
+    return YES;
+}
+
+#pragma mark 添加主视图
+- (void)addMainview
+{
+    LeftViewController *leftViewController = [[LeftViewController alloc] init];
+    MainViewController *mainViewController = [[MainViewController alloc] init];
+    RightViewController *rightViewController = [[RightViewController alloc] init];
+    [SliderViewController sharedSliderController].LeftVC = leftViewController;
+    [SliderViewController sharedSliderController].MainVC = mainViewController;
+    [SliderViewController sharedSliderController].RightVC = rightViewController;
     [SliderViewController sharedSliderController].LeftSContentOffset = LeftContentOffset;
     [SliderViewController sharedSliderController].LeftContentViewSContentOffset = LeftContentViewOffset;
     [SliderViewController sharedSliderController].LeftSContentScale = 0.75;
@@ -58,15 +67,15 @@
         CGAffineTransform ltransS = CGAffineTransformMakeScale(sca, sca);
         CGAffineTransform ltransT = CGAffineTransformMakeTranslation(transX, 0);
         CGAffineTransform lconT = CGAffineTransformConcat(ltransT, ltransS);
-        leftVC.contentView.transform = lconT;
+        leftViewController.contentView.transform = lconT;
     };
+    [SliderViewController sharedSliderController].RightSContentOffset = RIGHTContentOffset;
+    [SliderViewController sharedSliderController].RightSContentScale = 1;
+    [SliderViewController sharedSliderController].RightSJudgeOffset = LeftJudgeOffset;
+   
+    
     UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:[SliderViewController sharedSliderController]];
     self.window.rootViewController = navVC;
-    [self.window makeKeyAndVisible];
-    
-    [self addLoginView];
-    
-    return YES;
 }
 
 - (void)addLoginView
@@ -76,6 +85,7 @@
     NSString *userName = [userDefault objectForKey:@"username"];
     if (userName)
     {
+        [self addMainview];
         return;
     }
     
@@ -91,10 +101,16 @@
         ((LoginViewController *)viewController).isShowBackItem = NO;
     }
     UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:viewController];
-    [[SliderViewController sharedSliderController] presentViewController:navVC animated:NO completion:^{}];
+    self.window.rootViewController = navVC;
     
     [userDefault setObject:@"0" forKey:@"isFirst"];
     [userDefault synchronize];
+}
+
+#pragma mark 登录成功通知方法
+- (void)loginSucess:(NSNotification *)notification
+{
+    [self addMainview];
 }
 
 

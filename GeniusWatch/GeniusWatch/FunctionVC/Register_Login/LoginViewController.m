@@ -12,8 +12,6 @@
 #define TEXTFIELD_Y         NAVBAR_HEIGHT + 15.0
 #define ADD_Y               10.0
 #define SPACE_X             20.0 * CURRENT_SCALE
-#define TEXTFIELD_HEIGHT    35.0
-#define BUTTON_HEIGHT       40.0
 #define PWD_BTN_WIDTH       80.0
 #define REGISTE_BTN_SPACE   15.0
 
@@ -40,12 +38,14 @@
     // Do any additional setup after loading the view.
 }
 
+#pragma mark 初始化UI
 - (void)initUI
 {
     [self addTextFields];
     [self addButtons];
 }
 
+//添加输入框
 - (void)addTextFields
 {
     start_y += TEXTFIELD_Y;
@@ -71,6 +71,7 @@
     start_y += _passwordTextField.frame.size.height;
 }
 
+//添加登陆按钮/忘记密码按钮
 - (void)addButtons
 {
     UIButton *getPasswordButton = [CreateViewTool createButtonWithFrame:CGRectMake(_passwordTextField.frame.size.width + _passwordTextField.frame.origin.x - PWD_BTN_WIDTH, start_y, PWD_BTN_WIDTH, BUTTON_HEIGHT) buttonTitle:@"忘记密码" titleColor:APP_MAIN_COLOR normalBackgroundColor:[UIColor clearColor] highlightedBackgroundColor:nil selectorName:@"getPasswordButtonPrssed:" tagDelegate:self];
@@ -95,18 +96,21 @@
 }
 
 
+#pragma mark 点击登录按钮
 - (void)loginButtonPressed:(UIButton *)sender
 {
     [_passwordTextField resignFirstResponder];
     [_usernameTextField resignFirstResponder];
     
-    if ([self isCanCommit])
+    //if ([self isCanCommit])
     {
         //登录请求
-        [self dismissViewControllerAnimated:YES completion:^{}];
+        //[self dismissViewControllerAnimated:YES completion:^{}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSucess" object:nil];
     }
 }
 
+//验证数据是否合法
 - (BOOL)isCanCommit
 {
     NSString *username = _usernameTextField.text;
@@ -136,6 +140,7 @@
     }
 }
 
+#pragma mark  点击忘记密码按钮
 - (void)getPasswordButtonPrssed:(UIButton *)sender
 {
     RegisterViewController *registerViewController = [[RegisterViewController alloc] init];
@@ -144,7 +149,7 @@
 }
 
 
-
+#pragma mark  点击注册按钮
 - (void)registerButtonPrssed:(UIButton *)sender
 {
     RegisterViewController *registerViewController = [[RegisterViewController alloc] init];
@@ -153,6 +158,7 @@
 }
 
 
+#pragma mark  UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];

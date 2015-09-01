@@ -132,7 +132,6 @@
     {
         UIImage *image_up = [UIImage imageNamed:[imageName stringByAppendingString:@"_up.png"]];
         UIImage *image_down = [UIImage imageNamed:[imageName stringByAppendingString:@"_down.png"]];
-        image_up = [image_up resizableImageWithCapInsets:UIEdgeInsetsMake(0, -50, 0, 50) resizingMode:UIImageResizingModeStretch];
         [button setBackgroundImage:image_up forState:UIControlStateNormal];
         [button setBackgroundImage:image_down forState:UIControlStateHighlighted];
         [button setBackgroundImage:image_down forState:UIControlStateSelected];

@@ -15,8 +15,7 @@
 #define TIPLABEL_HEIGHT     40.0
 #define ADD_Y               15.0
 #define SPACE_X             20.0 * CURRENT_SCALE
-#define TEXTFIELD_HEIGHT    35.0
-#define BUTTON_HEIGHT       40.0
+
 
 @interface RegisterViewController ()<UITextFieldDelegate>
 
