@@ -10,16 +10,20 @@
 #import "iCarousel.h"
 
 
-#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define NUMBER_OF_VISIBLE_ITEMS     2
+#define ITEM_SPACING                160.0
+#define INCLUDE_PLACEHOLDERS        YES
+#define SPACE_Y                     44.0
+#define ROW_HEIGHT                  60.0
+#define ADD_Y                       20.0 * CURRENT_SCALE
 
-#define NUMBER_OF_VISIBLE_ITEMS 2
-#define ITEM_SPACING 120
-#define INCLUDE_PLACEHOLDERS YES
 
-@interface LeftViewController ()<iCarouselDataSource,iCarouselDelegate>
+@interface LeftViewController ()<iCarouselDataSource,iCarouselDelegate,UITableViewDataSource,UITableViewDelegate>
 {
-    iCarousel *carousel;
+    iCarousel *carouselView;
 }
+@property (nonatomic, strong) NSArray *titleArray;
+@property (nonatomic, strong) NSArray *imageArray;
 @end
 
 @implementation LeftViewController
@@ -29,9 +33,13 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
+    self.titleArray = @[@"宝贝资料",@"关于手表",@"手表设置"];
+    self.imageArray = @[@"personal_baby_up.png",@"personal_watch_up.png",@"personal_watch_set_up.png"];
+    
+    //添加试图方便整体移动
     self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [self.view addSubview:self.contentView];
-
+    
     [self initUI];
     
     // Do any additional setup after loading the view.
@@ -42,29 +50,79 @@
 {
     [self addBgImageView];
     [self addCoverFlowView];
+    [self addTableView];
 }
 
 //添加背景图
 - (void)addBgImageView
 {
     UIImageView *imageView = [CreateViewTool createImageViewWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height) placeholderImage:[UIImage imageNamed:@"left_bg"]];
-    [self.view addSubview:imageView];
+    [self.contentView addSubview:imageView];
 }
 
 //添加头视图
 - (void)addCoverFlowView
 {
     //create carousel
-    carousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, NAVBAR_HEIGHT, LeftContentOffset, 100.0)];
-    carousel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    carousel.type = iCarouselTypeRotary;
-    carousel.delegate = self;
-    carousel.dataSource = self;
-    [self.view addSubview:carousel];
+    UIImage *image = [UIImage imageNamed:@"baby_head_up"];
+    float height = image.size.height * 2/3 * CURRENT_SCALE;
+    float width = image.size.width * 2/3 * CURRENT_SCALE;
+    carouselView = [[iCarousel alloc] initWithFrame:CGRectMake((LEFT_SIDE_WIDTH - width)/2, SPACE_Y, width, height)];
+    carouselView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    carouselView.type = iCarouselTypeRotary;
+    carouselView.delegate = self;
+    carouselView.dataSource = self;
+    [self.contentView addSubview:carouselView];
 }
 
+//添加tableView
+- (void)addTableView
+{
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, carouselView.frame.size.height + carouselView.frame.origin.y + ADD_Y, LEFT_SIDE_WIDTH, ROW_HEIGHT * [self.titleArray count]) style:UITableViewStylePlain];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    tableView.scrollEnabled = NO;
+    tableView.backgroundColor = [UIColor clearColor];
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.contentView addSubview:tableView];
+}
 
-#pragma mark -
+#pragma mark UITableViewDelegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.titleArray count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return ROW_HEIGHT;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellID = @"cellID";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.imageView.transform = CGAffineTransformMakeScale(0.5, 0.5);
+        //[[NSNotificationCenter defaultCenter] addObserver:@(cell.isSelected) forKeyPath:@"Selected" options:NSKeyValueObservingOptionNew context:nil];
+    }
+    
+    cell.imageView.image = [UIImage imageNamed:self.imageArray[indexPath.row]];
+    cell.textLabel.text = self.titleArray[indexPath.row];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.textLabel.font = FONT(16.0);
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 #pragma mark iCarousel methods
 
 - (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel
@@ -84,8 +142,10 @@
     //create new view if no view is available for recycling
     if (view == nil)
     {
-        view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-        ((UIImageView *)view).image = [UIImage imageNamed:@"baby_head_up.png"];
+        UIImage *image = [UIImage imageNamed:@"baby_head_up"];
+        view = [CreateViewTool createRoundImageViewWithFrame:CGRectMake(0, 0, carousel.frame.size.width, carousel.frame.size.height) placeholderImage:image borderColor:[UIColor whiteColor] imageUrl:nil];
+        [CommonTool setViewLayer:view withLayerColor:[UIColor whiteColor] bordWidth:1.0];
+        [CommonTool clipView:view withCornerRadius:view.frame.size.width/2];
     }
 
     return view;
@@ -126,7 +186,7 @@
 {
     //implement 'flip3D' style carousel
     transform = CATransform3DRotate(transform, M_PI / 8.0f, 0.0f, 1.0f, 0.0f);
-    return CATransform3DTranslate(transform, 0.0f, 0.0f, offset * carousel.itemWidth);
+    return CATransform3DTranslate(transform, 0.0f, 0.0f, offset * carouselView.itemWidth);
 }
 
 - (BOOL)carouselShouldWrap:(iCarousel *)carousel

@@ -7,21 +7,30 @@
 //
 
 #import "MainViewController.h"
-#import "SliderViewController.h"
+//#import "SliderViewController.h"
+#import "MainSideViewController.h"
 #import "BMapKit.h"
 
+//地图
 #define MAP_SPACE_Y     80.0 * CURRENT_SCALE
 #define MAP_SPACE_X     40.0 * CURRENT_SCALE
 #define MAP_HEIGHT      300.0 * CURRENT_SCALE
+//左右按钮
 #define MENU_SPAXCE_Y   44.0
 #define BABY_SPAXCE_Y   35.0
 #define SPACE_X         15.0
+//守护按钮
+#define ADD_Y           5.0 * CURRENT_SCALE
+//功能按钮
+#define FUNC_ADD_Y      40.0 * CURRENT_SCALE
+#define FUNC_SPACE_X    25.0 * CURRENT_SCALE
 
 @interface MainViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
 {
     BMKLocationService *locationService;
     BMKGeoCodeSearch *geocodesearch;
 }
+@property (nonatomic, strong) UIButton *savePeaceButton;
 @property (nonatomic, strong) BMKMapView *mapView;
 
 @end
@@ -65,6 +74,7 @@
     [self addMapView];
     [self addBgImageView];
     [self addMenuButtons];
+    [self addFunctionButtons];
 }
 
 //添加背景
@@ -114,17 +124,59 @@
     [babyView addSubview:cellImageView];
 }
 
+- (void)addFunctionButtons
+{
+    float savePeaceButton_y = self.mapView.frame.origin.y + self.mapView.frame.size.height + ADD_Y;
+    UIImage *savePeaceButtonImage = [UIImage imageNamed:@"homepage_school_up"];
+    float savePeaceButtonImageWidth = savePeaceButtonImage.size.width/3 * CURRENT_SCALE;
+    float savePeaceButtonImageHeight = savePeaceButtonImage.size.height/3 * CURRENT_SCALE;
+    self.savePeaceButton = [CreateViewTool  createButtonWithFrame:CGRectMake((self.view.frame.size.width - savePeaceButtonImageWidth)/2, savePeaceButton_y , savePeaceButtonImageWidth, savePeaceButtonImageHeight) buttonImage:@"homepage_school" selectorName:@"savePeaceButtonPressed:" tagDelegate:self];
+    [self.view addSubview:self.savePeaceButton];
+    
+    NSArray *imageArray = @[@"homepage_location",@"homepage_phone",@"homepage_chat"];
+    float totleWidth = 0.0;
+    float y1 = self.savePeaceButton.frame.size.height + self.savePeaceButton.frame.origin.y + FUNC_ADD_Y;
+    float y2 = y1;
+    for (int i = 0; i < [imageArray count]; i++)
+    {
+        UIImage *image = [UIImage imageNamed:[imageArray[i] stringByAppendingString:@"_up"]];
+        float width = image.size.width/3 * CURRENT_SCALE;
+        float height = image.size.height/3 * CURRENT_SCALE;
+        if (i != 1)
+        {
+            y2 = y1 + height/3;
+        }
+        totleWidth += width;
+    }
+    float functionButtonAddX = (self.view.frame.size.width - 2 * FUNC_SPACE_X - totleWidth)/2;
+
+    for (int i = 0; i < [imageArray count]; i++)
+    {
+        UIImage *image = [UIImage imageNamed:[imageArray[i] stringByAppendingString:@"_up"]];
+        float width = image.size.width/3 * CURRENT_SCALE;
+        float height = image.size.height/3 * CURRENT_SCALE;
+        float x = FUNC_SPACE_X + i * (width + functionButtonAddX);
+        float y = (i != 1) ? y2 : y1;
+        UIButton *button = [CreateViewTool createButtonWithFrame:CGRectMake(x, y, width, height) buttonImage:imageArray[i] selectorName:@"" tagDelegate:self];
+        button.tag = i + 1;
+        [self.view addSubview:button];
+    }
+   
+}
+
 
 #pragma mark 点击头像按钮
 - (void)babyButtonPressed:(UIButton *)sender
 {
-    [[SliderViewController sharedSliderController] showLeftViewController];
+    //[[SliderViewController sharedSliderController] showLeftViewController];
+    [[MainSideViewController sharedSliderController] showLeftViewController:YES];
 }
 
 #pragma mark 点击更多按钮
 - (void)moreButtonPressed:(UIButton *)sender
 {
-    [[SliderViewController sharedSliderController] showRightViewController];
+    //[[SliderViewController sharedSliderController] showRightViewController];
+    [[MainSideViewController sharedSliderController] showRightViewController:YES];
 }
 
 

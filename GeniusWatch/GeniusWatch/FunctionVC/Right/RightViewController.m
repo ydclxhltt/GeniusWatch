@@ -21,6 +21,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor clearColor];
     [self initUI];
     // Do any additional setup after loading the view.
 }
@@ -28,7 +29,15 @@
 #pragma mark 初始化UI
 - (void)initUI
 {
+    [self addBgImageView];
     [self addButtons];
+}
+
+//添加背景图
+- (void)addBgImageView
+{
+    UIImageView *imageView = [CreateViewTool createImageViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) placeholderImage:[UIImage imageNamed:@"left_bg"]];
+    [self.view addSubview:imageView];
 }
 
 //添加功能按钮
@@ -41,10 +50,10 @@
     float buttonWidth = image.size.width/3 * CURRENT_SCALE;
     for (int i = 0; i < [titleArray count]; i++)
     {
-        UIButton *button = [CreateViewTool createButtonWithFrame:CGRectMake(self.view.frame.size.width - RIGHTContentOffset +(RIGHTContentOffset - buttonWidth)/2, SPACE_Y + i * (buttonHeight + TITLE_HEIGHT + ADD_Y), buttonWidth, buttonHeight) buttonImage:imageArray[i] selectorName:@"buttonPressed:" tagDelegate:self];
+        UIButton *button = [CreateViewTool createButtonWithFrame:CGRectMake(self.view.frame.size.width - RIGHT_SIDE_WIDTH + (RIGHT_SIDE_WIDTH - buttonWidth)/2, SPACE_Y + i * (buttonHeight + TITLE_HEIGHT + ADD_Y), buttonWidth, buttonHeight) buttonImage:imageArray[i] selectorName:@"buttonPressed:" tagDelegate:self];
         [self.view addSubview:button];
         
-        UILabel *label = [CreateViewTool createLabelWithFrame:CGRectMake(self.view.frame.size.width - RIGHTContentOffset, button.frame.size.height + button.frame.origin.y, RIGHTContentOffset, TITLE_HEIGHT) textString:titleArray[i] textColor:[UIColor whiteColor] textFont:FONT(14.0)];
+        UILabel *label = [CreateViewTool createLabelWithFrame:CGRectMake(self.view.frame.size.width - RIGHT_SIDE_WIDTH, button.frame.size.height + button.frame.origin.y, RIGHT_SIDE_WIDTH, TITLE_HEIGHT) textString:titleArray[i] textColor:[UIColor whiteColor] textFont:FONT(14.0)];
         label.textAlignment = NSTextAlignmentCenter;
         [self.view addSubview:label];
     }
