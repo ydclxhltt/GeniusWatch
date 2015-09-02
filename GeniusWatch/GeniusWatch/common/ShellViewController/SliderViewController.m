@@ -340,6 +340,12 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
         }
         else    //transX < 0
         {
+            
+            if (transX <= -(self.RightSContentOffset * self.RightSContentScale))
+            {
+                return;
+            }
+            
             if (!_canShowRight||_RightVC==nil) {
                 return;
             }

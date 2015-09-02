@@ -47,10 +47,14 @@
 #define CURRENT_SCALE           SCREEN_WIDTH/375.0
 
 //侧滑相关设置
-#define RIGHTContentOffset      100.0 * SCREEN_WIDTH/320.0
-#define LeftContentOffset       275.0 * SCREEN_WIDTH/320.0
-#define LeftContentViewOffset   90 * SCREEN_WIDTH/320.0
-#define LeftJudgeOffset         160 * SCREEN_WIDTH/320.0
+//#define RIGHTContentOffset      100.0 * SCREEN_WIDTH/320.0
+//#define LeftContentOffset       275.0 * SCREEN_WIDTH/320.0
+//#define LeftContentViewOffset   90 * SCREEN_WIDTH/320.0
+//#define LeftJudgeOffset         160 * SCREEN_WIDTH/320.0
+#define LEFT_SIDE_WIDTH         260.0 * SCREEN_WIDTH/320.0
+#define RIGHT_SIDE_WIDTH        100.0 * SCREEN_WIDTH/320.0
+
+//NSUserDefault——Key
 #define USER_KEY                @"uesrname"
 #define PWD_KEY                 @"password"
 #define ISFIRST_KEY             @"isFirst"
