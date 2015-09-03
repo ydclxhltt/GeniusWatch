@@ -8,9 +8,9 @@
 
 #import "RightViewController.h"
 
-#define SPACE_Y       64.0
-#define TITLE_HEIGHT  25.0
-#define ADD_Y         15.0
+#define SPACE_Y       100.0
+#define TITLE_HEIGHT  20.0
+#define ADD_Y         20.0
 
 @interface RightViewController ()
 
@@ -43,8 +43,8 @@
 //添加功能按钮
 - (void)addButtons
 {
-    NSArray *titleArray = @[@"通讯录",@"手机话费",@"消息记录",@"问题与反馈",@"APP设置"];
-    NSArray *imageArray = @[@"set_linkman",@"set_charge",@"set_infomation",@"set_feedback",@"set_set"];
+    NSArray *titleArray = @[@"通讯录",@"消息记录",@"手机话费",@"APP设置",@"问题与反馈"];
+    NSArray *imageArray = @[@"set_linkman",@"set_infomation",@"set_charge",@"set_set",@"set_feedback"];
     UIImage *image = [UIImage imageNamed:[imageArray[0] stringByAppendingString:@"_up"]];
     float buttonHeight = image.size.height/3 * CURRENT_SCALE;
     float buttonWidth = image.size.width/3 * CURRENT_SCALE;

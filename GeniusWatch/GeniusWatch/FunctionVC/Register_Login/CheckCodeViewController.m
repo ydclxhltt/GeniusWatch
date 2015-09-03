@@ -18,6 +18,11 @@
 #define CODE_BUTTON_WIDTH   80.0
 #define CODE_TIP            @"获取验证码"
 
+#define LOADING_SUCESS      @"发送成功"
+#define LOADING_FAIL        @"发送失败"
+#define CODE_SUCESS         @"验证成功"
+#define CODE_FAIL           @"验证失败"
+
 @interface CheckCodeViewController ()<UITextFieldDelegate>
 {
     NSTimer *countTimer;
@@ -88,35 +93,21 @@
     [self.view addSubview:_getCodeButton];
     
     
-    UIButton *nextButton = [CreateViewTool createButtonWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 2 * SPACE_X, BUTTON_HEIGHT) buttonTitle:@"下一步" titleColor:[UIColor whiteColor] normalBackgroundColor:APP_MAIN_COLOR highlightedBackgroundColor:[UIColor grayColor]
-                                                    selectorName:@"nextButtonPressed:" tagDelegate:self];
+    UIButton *nextButton = [CreateViewTool createButtonWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 2 * SPACE_X, BUTTON_HEIGHT) buttonTitle:@"下一步" titleColor:[UIColor whiteColor] normalBackgroundColor:APP_MAIN_COLOR highlightedBackgroundColor:[UIColor grayColor] selectorName:@"nextButtonPressed:" tagDelegate:self];
     [CommonTool setViewLayer:nextButton withLayerColor:[UIColor lightGrayColor] bordWidth:.5];
     [CommonTool clipView:nextButton withCornerRadius:15.0];
     [self.view addSubview:nextButton];
 }
 
-#pragma  mark 下一步按钮点击事件
-- (void)nextButtonPressed:(UIButton *)sender
-{
-    NSString *codeStr = self.codeTextField.text;
-    codeStr = (codeStr) ? codeStr : @"";
-    if (codeStr.length != 6)
-    {
-        [CommonTool addAlertTipWithMessage:@"请输入正确的验证码"];
-    }
-    else
-    {
-        SetPassWordViewController *setPasswordViewController = [[SetPassWordViewController alloc] init];
-        [self.navigationController pushViewController:setPasswordViewController animated:YES];
-    }
-}
 
 #pragma mark 获取验证码点击事件
 - (void)getCodeButtonPressed:(UIButton *)sender
 {
     sender.enabled = NO;
+    [self getCodeRequest];
     [self createTimer];
 }
+
 
 //创建Timer
 - (void)createTimer
@@ -146,7 +137,103 @@
     [_getCodeButton setTitle:titleStr forState:UIControlStateNormal];
 }
 
+//清掉定时器
+- (void)resetTimer
+{
+    [countTimer invalidate];
+    _getCodeButton.enabled = YES;
+    count = 60;
+    [_getCodeButton setTitle:CODE_TIP forState:UIControlStateNormal];
+}
 
+#pragma mark 获取验证码
+- (void)getCodeRequest
+{
+    __weak typeof(self) weakSelf = self;
+    NSString *type = (self.pushType == PushTypeRegister) ? @"reg" : @"chgpwd";
+    NSDictionary *requestDic = @{@"mobileNo":self.phoneNumberStr,@"type":type};
+    [[RequestTool alloc] requestWithUrl:GET_CODE_URL
+                         requestParamas:requestDic
+                            requestType:RequestTypeAsynchronous
+                          requestSucess:^(AFHTTPRequestOperation *operation, id responseDic)
+                         {
+                             NSLog(@"GET_CODE===%@",responseDic);
+                             NSDictionary *dic = (NSDictionary *)responseDic;
+                             //0:成功 417 发送短信验证码失败
+                             NSString *errorCode = dic[@"errorCode"];
+                             NSString *description = dic[@"description"];
+                             description = (description) ? description : LOADING_FAIL;
+                             if ([@"0" isEqualToString:errorCode])
+                             {
+                                 [SVProgressHUD showSuccessWithStatus:LOADING_SUCESS];
+                             }
+                             else
+                             {
+                                 [weakSelf resetTimer];
+                                 [SVProgressHUD showErrorWithStatus:description];
+                             }
+                         }
+                         requestFail:^(AFHTTPRequestOperation *operation, NSError *error)
+                         {
+                             [weakSelf resetTimer];
+                             [SVProgressHUD showErrorWithStatus:LOADING_FAIL];
+                         }];
+}
+
+
+#pragma  mark 下一步按钮点击事件
+- (void)nextButtonPressed:(UIButton *)sender
+{
+    NSString *codeStr = self.codeTextField.text;
+    codeStr = (codeStr) ? codeStr : @"";
+    if (codeStr.length != 6)
+    {
+        [CommonTool addAlertTipWithMessage:@"请输入正确的验证码"];
+    }
+    else
+    {
+        [self checkCodeRequest];
+    }
+}
+
+#pragma mark 验证验证码请求
+- (void)checkCodeRequest
+{
+    __weak typeof(self) weakSelf = self;
+    NSDictionary *requestDic = @{@"mobileNo":self.phoneNumberStr,@"msgValidateCode":self.codeTextField.text};
+    [[RequestTool alloc] requestWithUrl:CHECK_CODE_URL
+                         requestParamas:requestDic
+                            requestType:RequestTypeAsynchronous
+                          requestSucess:^(AFHTTPRequestOperation *operation, id responseDic)
+                         {
+                             NSLog(@"CHECK_CODE===%@",responseDic);
+                             NSDictionary *dic = (NSDictionary *)responseDic;
+                             //0:成功 401.1 验证码错误
+                             NSString *errorCode = dic[@"errorCode"];
+                             NSString *description = dic[@"description"];
+                             description = (description) ? description : CODE_FAIL;
+                             if ([@"0" isEqualToString:errorCode])
+                             {
+                                 [SVProgressHUD showSuccessWithStatus:CODE_SUCESS];
+                                 [weakSelf gotoSetPassword];
+                             }
+                             else
+                             {
+                                 [SVProgressHUD showErrorWithStatus:description];
+                             }
+                         }
+                         requestFail:^(AFHTTPRequestOperation *operation, NSError *error)
+                         {
+                             [SVProgressHUD showErrorWithStatus:LOADING_FAIL];
+                         }];
+}
+
+//跳转到设置密码界面
+- (void)gotoSetPassword
+{
+    SetPassWordViewController *setPasswordViewController = [[SetPassWordViewController alloc] init];
+    [self.navigationController pushViewController:setPasswordViewController animated:YES];
+}
 
 #pragma mark UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

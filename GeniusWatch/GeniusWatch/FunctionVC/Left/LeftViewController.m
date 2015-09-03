@@ -33,8 +33,8 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.titleArray = @[@"宝贝资料",@"关于手表",@"手表设置"];
-    self.imageArray = @[@"personal_baby_up.png",@"personal_watch_up.png",@"personal_watch_set_up.png"];
+    self.titleArray = @[@"宝贝资料",@"手表设置",@"关于手表"];
+    self.imageArray = @[@"personal_baby",@"personal_watch_set",@"personal_watch"];
     
     //添加试图方便整体移动
     self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];

@@ -16,6 +16,10 @@
 #define ADD_Y               15.0
 #define SPACE_X             20.0 * CURRENT_SCALE
 
+#define LOADING             @"正在验证..."
+#define LOADING_SUCESS      @"验证成功"
+#define LOADING_FAIL        @"验证失败"
+
 
 @interface RegisterViewController ()<UITextFieldDelegate>
 
@@ -34,6 +38,7 @@
     // Do any additional setup after loading the view.
 }
 
+#pragma mark 初始化UI
 - (void)initUI
 {
     [self addTipLabel];
@@ -41,6 +46,7 @@
     [self addNextButton];
 }
 
+//添加提示
 - (void)addTipLabel
 {
     NSString *tipString = (self.pushType == PushTypeRegister)? TIP_STRING : TIP_STRING1;
@@ -52,6 +58,7 @@
     start_y = tipLabel.frame.origin.y + tipLabel.frame.size.height + ADD_Y;
 }
 
+//添加输入框
 - (void)addTextField
 {
     _phoneNumberTextField = [CreateViewTool createTextFieldWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 2 * SPACE_X, TEXTFIELD_HEIGHT) textColor:[UIColor blackColor] textFont:FONT(16.0) placeholderText:@"您的手机号码"];
@@ -65,15 +72,16 @@
     start_y += _phoneNumberTextField.frame.size.height + ADD_Y;
 }
 
+//添加下一步按钮
 - (void)addNextButton
 {
-    UIButton *nextButton = [CreateViewTool createButtonWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 2 * SPACE_X, BUTTON_HEIGHT) buttonTitle:@"下一步" titleColor:[UIColor whiteColor] normalBackgroundColor:APP_MAIN_COLOR highlightedBackgroundColor:[UIColor grayColor]
-                                                    selectorName:@"nextButtonPressed:" tagDelegate:self];
+    UIButton *nextButton = [CreateViewTool createButtonWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 2 * SPACE_X, BUTTON_HEIGHT) buttonTitle:@"下一步" titleColor:[UIColor whiteColor] normalBackgroundColor:APP_MAIN_COLOR highlightedBackgroundColor:[UIColor grayColor] selectorName:@"nextButtonPressed:" tagDelegate:self];
     [CommonTool setViewLayer:nextButton withLayerColor:[UIColor lightGrayColor] bordWidth:.5];
     [CommonTool clipView:nextButton withCornerRadius:15.0];
     [self.view addSubview:nextButton];
 }
 
+#pragma mark 下一步按钮响应事件
 - (void)nextButtonPressed:(UIButton *)sender
 {
     NSString *phoneNumberStr = (_phoneNumberTextField.text) ? _phoneNumberTextField.text : @"";
@@ -84,14 +92,57 @@
     else
     {
         //下一步
-        CheckCodeViewController *checkViewController = [[CheckCodeViewController alloc] init];
-        checkViewController.pushType = self.pushType;
-        checkViewController.phoneNumberStr = phoneNumberStr;
-        [self.navigationController pushViewController:checkViewController animated:YES];
+        [self checkPhoneNumber];
         
     }
 }
 
+
+#pragma mark 验证手机号
+- (void)checkPhoneNumber
+{
+    __weak typeof(self) weakSelf = self;
+    [SVProgressHUD showWithStatus:LOADING];
+    NSDictionary *requestDic = @{@"mobileNo":_phoneNumberTextField.text};
+    [[RequestTool alloc] requestWithUrl:CHECK_PHONENUMBER_URL
+                         requestParamas:requestDic
+                            requestType:RequestTypeAsynchronous
+                          requestSucess:^(AFHTTPRequestOperation *operation, id responseDic)
+                          {
+                              NSLog(@"CHECK_PHONENUMBER===%@",responseDic);
+                              NSDictionary *dic = (NSDictionary *)responseDic;
+                              //0:成功 403.3 手机号码已注册 413.10 未找到手机号
+                              NSString *errorCode = dic[@"errorCode"];
+                              NSString *description = dic[@"description"];
+                              description = (description) ? description : LOADING_FAIL;
+                              if ([@"0" isEqualToString:errorCode])
+                              {
+                                  [SVProgressHUD showSuccessWithStatus:LOADING_SUCESS];
+                                  [weakSelf gotoCheckCode];
+                              }
+                              else
+                              {
+                                  [SVProgressHUD showErrorWithStatus:description];
+                              }
+                          }
+                          requestFail:^(AFHTTPRequestOperation *operation, NSError *error)
+                          {
+                              [SVProgressHUD showErrorWithStatus:LOADING_FAIL];
+                          }];
+}
+
+
+#pragma mark 跳转到获取验证码
+- (void)gotoCheckCode
+{
+    CheckCodeViewController *checkViewController = [[CheckCodeViewController alloc] init];
+    checkViewController.pushType = self.pushType;
+    checkViewController.phoneNumberStr = _phoneNumberTextField.text;
+    [self.navigationController pushViewController:checkViewController animated:YES];
+}
+
+
+#pragma UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];

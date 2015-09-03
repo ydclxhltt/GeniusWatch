@@ -12,25 +12,25 @@
 #import "BMapKit.h"
 
 //地图
-#define MAP_SPACE_Y     80.0 * CURRENT_SCALE
-#define MAP_SPACE_X     40.0 * CURRENT_SCALE
-#define MAP_HEIGHT      300.0 * CURRENT_SCALE
+#define MAP_SPACE_Y         80.0 * CURRENT_SCALE
+#define MAP_SPACE_X         40.0 * CURRENT_SCALE
+#define MAP_HEIGHT          300.0 * CURRENT_SCALE
 //左右按钮
-#define MENU_SPAXCE_Y   44.0
-#define BABY_SPAXCE_Y   35.0
-#define SPACE_X         15.0
+#define MENU_SPAXCE_Y       44.0
+#define BABY_SPAXCE_Y       35.0
+#define BABY_SPACE_X        20.0
+#define MENU_SPACE_X        10.0
+#define BABY_LAYER_COLOR    RGB(86.0,151.0,142.0)
+
 //守护按钮
-#define ADD_Y           5.0 * CURRENT_SCALE
-//功能按钮
-#define FUNC_ADD_Y      40.0 * CURRENT_SCALE
-#define FUNC_SPACE_X    25.0 * CURRENT_SCALE
+//#define ADD_Y           5.0 * CURRENT_SCALE
 
 @interface MainViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
 {
     BMKLocationService *locationService;
     BMKGeoCodeSearch *geocodesearch;
 }
-@property (nonatomic, strong) UIButton *savePeaceButton;
+//@property (nonatomic, strong) UIButton *savePeaceButton;
 @property (nonatomic, strong) BMKMapView *mapView;
 
 @end
@@ -43,6 +43,7 @@
     [super viewDidLoad];
     
     [self initUI];
+
     
     // Do any additional setup after loading the view.
 }
@@ -80,8 +81,19 @@
 //添加背景
 - (void)addBgImageView
 {
-    UIImageView *bgImageView = [CreateViewTool createImageViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) placeholderImage:[UIImage imageNamed:@"homepage_bg"]];
-    [self.view addSubview:bgImageView];
+//    UIImageView *bgImageView = [CreateViewTool createImageViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) placeholderImage:[UIImage imageNamed:@"homepage_bg"]];
+//    [self.view addSubview:bgImageView];
+    NSArray *imageArray = @[@"top",@"middle",@"bottom"];
+    float y = 0.0;
+    for (int i = 0; i < [imageArray count]; i++)
+    {
+        UIImage *image = [UIImage imageNamed:imageArray[i]];
+        float width = image.size.width/3 * CURRENT_SCALE;
+        float height = image.size.height/3 * CURRENT_SCALE;
+        UIImageView *imageView = [CreateViewTool createImageViewWithFrame:CGRectMake(0, y, width, height) placeholderImage:image];
+        [self.view addSubview:imageView];
+         y += height;
+    }
 }
 
 //添加地图
@@ -101,7 +113,7 @@
     UIImage *image = [UIImage imageNamed:@"homepage_more_up"];
     float width = image.size.width/3 * CURRENT_SCALE;
     float height = image.size.height/3 * CURRENT_SCALE;
-    UIButton *moreButton = [CreateViewTool createButtonWithFrame:CGRectMake(self.view.frame.size.width - SPACE_X - width, MENU_SPAXCE_Y, width, height) buttonImage:@"homepage_more" selectorName:@"moreButtonPressed:" tagDelegate:self];
+    UIButton *moreButton = [CreateViewTool createButtonWithFrame:CGRectMake(self.view.frame.size.width - MENU_SPACE_X - width, MENU_SPAXCE_Y, width, height) buttonImage:@"homepage_more" selectorName:@"moreButtonPressed:" tagDelegate:self];
     [self.view addSubview:moreButton];
     
     
@@ -109,7 +121,7 @@
     float babyWidth = babyImage.size.width/3 * CURRENT_SCALE;
     float babyHeight = babyImage.size.height/3 * CURRENT_SCALE;
     
-    UIImageView *babyView = [CreateViewTool createImageViewWithFrame:CGRectMake(SPACE_X, BABY_SPAXCE_Y, babyWidth, babyHeight) placeholderImage:nil];
+    UIImageView *babyView = [CreateViewTool createImageViewWithFrame:CGRectMake(BABY_SPACE_X, BABY_SPAXCE_Y, babyWidth, babyHeight) placeholderImage:nil];
     [self.view addSubview:babyView];
     
     UIButton *babyButton = [CreateViewTool  createButtonWithFrame:CGRectMake(0, 0, babyWidth, babyHeight) buttonImage:@"baby_head" selectorName:@"babyButtonPressed:" tagDelegate:self];
@@ -124,6 +136,8 @@
     [babyView addSubview:cellImageView];
 }
 
+/*
+ *******************屏蔽小天才UI效果***************
 - (void)addFunctionButtons
 {
     float savePeaceButton_y = self.mapView.frame.origin.y + self.mapView.frame.size.height + ADD_Y;
@@ -162,6 +176,27 @@
         [self.view addSubview:button];
     }
    
+}
+*******************屏蔽小天才UI效果***************
+*/
+
+//添加
+- (void)addFunctionButtons
+{
+    NSValue *point1 = [NSValue valueWithCGRect:CGRectMake(125.0, 438.0, 123.0, 64.0)];
+    NSValue *point2 = [NSValue valueWithCGRect:CGRectMake(156.0, 495.0, 61.0, 61.0)];
+    NSValue *point3 = [NSValue valueWithCGRect:CGRectMake(125.0, 548.0, 123.0, 64.0)];
+    NSValue *point4 = [NSValue valueWithCGRect:CGRectMake(100.0, 464.0, 64.0, 123.0)];
+    NSValue *point5 = [NSValue valueWithCGRect:CGRectMake(209.0, 464.0, 64.0, 123.0)];
+    NSArray *pointArray = @[point1,point2,point3,point4,point5];
+    NSArray *imageArray = @[@"school",@"homepage_phone",@"homepage_school",@"homepage_location",@"homepage_chat"];
+    
+    for (int i = 0; i < [pointArray count]; i++)
+    {
+        CGRect frame = [pointArray[i] CGRectValue];
+        UIButton *button = [CreateViewTool createButtonWithFrame:CGRectMake(frame.origin.x * CURRENT_SCALE, frame.origin.y * CURRENT_SCALE, frame.size.width * CURRENT_SCALE, frame.size.height * CURRENT_SCALE) buttonImage:imageArray[i] selectorName:@"" tagDelegate:self];
+        [self.view addSubview:button];
+    }
 }
 
 
