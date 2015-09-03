@@ -24,9 +24,11 @@
 #import "BasicViewController.h"
 #import "CreateViewTool.h"
 #import "CommonHeader.h"
+#import "RequestTool.h"
+#import "SVProgressHUD.h"
 
 #endif
 
-#define NSLog(...){}
+//#define NSLog(...){}
 
 #endif
