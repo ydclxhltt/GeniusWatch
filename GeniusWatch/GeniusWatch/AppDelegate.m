@@ -33,8 +33,10 @@
 {
     self.window.backgroundColor = [UIColor whiteColor];
     // Override point for customization after application launch.
-    [[UINavigationBar appearance] setShadowImage:[UIImage imageNamed:@"back"]];
+    //[[UINavigationBar appearance] setShadowImage:[UIImage imageNamed:@"back"]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName:APP_MAIN_COLOR}];
+    
+    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     //注册百度地图
     mapManager = [[BMKMapManager alloc] init];
