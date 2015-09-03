@@ -297,11 +297,15 @@
         _currentView.layer.shadowPath = [UIBezierPath bezierPathWithRect:_currentView.bounds].CGPath;
     }
     [_currentView setFrame:CGRectMake(xoffset, _baseView.bounds.origin.y, _baseView.frame.size.width, _baseView.frame.size.height)];
-    return;
-    if (self.rootViewMoveBlock) {//如果有自定义动画，使用自定义的效果
-        self.rootViewMoveBlock(_currentView,_baseView.bounds,xoffset);
+    if (xoffset < 0)
+    {
         return;
     }
+//    return;
+//    if (self.rootViewMoveBlock) {//如果有自定义动画，使用自定义的效果
+//        self.rootViewMoveBlock(_currentView,_baseView.bounds,xoffset);
+//        return;
+//    }
     /*平移的动画
      [_currentView setFrame:CGRectMake(xoffset, _baseView.bounds.origin.y, _baseView.frame.size.width, _baseView.frame.size.height)];
     return;

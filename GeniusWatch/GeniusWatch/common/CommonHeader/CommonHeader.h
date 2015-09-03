@@ -9,6 +9,8 @@
 #ifndef GeniusWatch_CommonHeader_h
 #define GeniusWatch_CommonHeader_h
 
+#import "RequestUrlHeader.h"
+
 //设置RGB
 #define RGBA(R,G,B,AL)          [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:AL]
 #define RGB(R,G,B)              [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:1.0]
@@ -51,8 +53,8 @@
 //#define LeftContentOffset       275.0 * SCREEN_WIDTH/320.0
 //#define LeftContentViewOffset   90 * SCREEN_WIDTH/320.0
 //#define LeftJudgeOffset         160 * SCREEN_WIDTH/320.0
-#define LEFT_SIDE_WIDTH         260.0 * SCREEN_WIDTH/320.0
-#define RIGHT_SIDE_WIDTH        100.0 * SCREEN_WIDTH/320.0
+#define LEFT_SIDE_WIDTH         280.0 * CURRENT_SCALE
+#define RIGHT_SIDE_WIDTH        120.0 * CURRENT_SCALE
 
 //NSUserDefault——Key
 #define USER_KEY                @"uesrname"
