@@ -16,10 +16,13 @@
 #define SPACE_X             20.0 * CURRENT_SCALE
 #define ADD_X               10.0 * CURRENT_SCALE
 #define CODE_BUTTON_WIDTH   80.0
+
 #define CODE_TIP            @"获取验证码"
 
+#define LOADING_TIP         @"正在发送..."
 #define LOADING_SUCESS      @"发送成功"
 #define LOADING_FAIL        @"发送失败"
+#define LOADING_CODE_TIP    @"正在验证..."
 #define CODE_SUCESS         @"验证成功"
 #define CODE_FAIL           @"验证失败"
 
@@ -86,7 +89,7 @@
 - (void)addButtons
 {
     float start_x = _codeTextField.frame.origin.x + _codeTextField.frame.size.width + ADD_X;
-    _getCodeButton = [CreateViewTool createButtonWithFrame:CGRectMake(start_x, _codeTextField.frame.origin.y, self.view.frame.size.width - start_x - SPACE_X, _codeTextField.frame.size.height) buttonTitle:CODE_TIP titleColor:[UIColor whiteColor] normalBackgroundColor:[UIColor lightGrayColor] highlightedBackgroundColor:[UIColor grayColor] selectorName:@"getCodeButtonPressed:" tagDelegate:self];
+    _getCodeButton = [CreateViewTool createButtonWithFrame:CGRectMake(start_x, _codeTextField.frame.origin.y, self.view.frame.size.width - start_x - SPACE_X, _codeTextField.frame.size.height) buttonTitle:CODE_TIP titleColor:APP_MAIN_COLOR normalBackgroundColor:[UIColor clearColor] highlightedBackgroundColor:[UIColor lightGrayColor] selectorName:@"getCodeButtonPressed:" tagDelegate:self];
     _getCodeButton.titleLabel.font = FONT(14.0);
     [CommonTool setViewLayer:_getCodeButton withLayerColor:[UIColor lightGrayColor] bordWidth:.5];
     [CommonTool clipView:_getCodeButton withCornerRadius:10.0];
@@ -149,6 +152,7 @@
 #pragma mark 获取验证码
 - (void)getCodeRequest
 {
+    [SVProgressHUD showWithStatus:LOADING_TIP];
     __weak typeof(self) weakSelf = self;
     NSString *type = (self.pushType == PushTypeRegister) ? @"reg" : @"chgpwd";
     NSDictionary *requestDic = @{@"mobileNo":self.phoneNumberStr,@"type":type};
@@ -200,6 +204,7 @@
 - (void)checkCodeRequest
 {
     __weak typeof(self) weakSelf = self;
+    [SVProgressHUD showWithStatus:LOADING_CODE_TIP];
     NSDictionary *requestDic = @{@"mobileNo":self.phoneNumberStr,@"msgValidateCode":self.codeTextField.text};
     [[RequestTool alloc] requestWithUrl:CHECK_CODE_URL
                          requestParamas:requestDic
@@ -212,15 +217,15 @@
                              NSString *errorCode = dic[@"errorCode"];
                              NSString *description = dic[@"description"];
                              description = (description) ? description : CODE_FAIL;
-                             if ([@"0" isEqualToString:errorCode])
+                             //if ([@"0" isEqualToString:errorCode])
                              {
                                  [SVProgressHUD showSuccessWithStatus:CODE_SUCESS];
                                  [weakSelf gotoSetPassword];
                              }
-                             else
-                             {
-                                 [SVProgressHUD showErrorWithStatus:description];
-                             }
+                             //else
+                             //{
+                             //    [SVProgressHUD showErrorWithStatus:description];
+                            // }
                          }
                          requestFail:^(AFHTTPRequestOperation *operation, NSError *error)
                          {
@@ -232,6 +237,8 @@
 - (void)gotoSetPassword
 {
     SetPassWordViewController *setPasswordViewController = [[SetPassWordViewController alloc] init];
+    setPasswordViewController.pushType = self.pushType;
+    setPasswordViewController.phoneNumberStr = self.phoneNumberStr;
     [self.navigationController pushViewController:setPasswordViewController animated:YES];
 }
 

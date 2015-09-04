@@ -13,7 +13,9 @@
 #define ADD_Y               10.0
 #define SPACE_X             20.0 * CURRENT_SCALE
 
-
+#define LOADING_TIP         @"正在提交..."
+#define LOADING_FAIL        @"提交失败"
+#define LOADING_SUCESS      @"提交成功"
 
 @interface SetPassWordViewController ()<UITextFieldDelegate>
 
@@ -84,9 +86,7 @@
     {
         //设置密码
         //[self dismissViewControllerAnimated:YES completion:^{}];
-        NSArray *array = self.navigationController.viewControllers;
-        UIViewController *viewController = ([array[1] isKindOfClass:[LoginViewController class]]) ? array[1] : array[0];
-        [self.navigationController popToViewController:viewController animated:YES];
+        [self registerAndChangePassword];
     }
 }
 
@@ -116,6 +116,49 @@
     
     return YES;
 }
+
+#pragma mark 注册或忘记密码请求
+- (void)registerAndChangePassword
+{
+    __weak typeof(self) weakSelf = self;
+    NSString *type = (self.pushType == PushTypeRegister) ? @"reg" : @"chgpwd";
+    NSDictionary *requestDic = @{@"mobileNo":self.phoneNumberStr,@"type":type,@"password":_pwdTextField1.text};
+    [[RequestTool alloc] requestWithUrl:REG_CHANGEPWD_URL
+                         requestParamas:requestDic
+                            requestType:RequestTypeAsynchronous
+                          requestSucess:^(AFHTTPRequestOperation *operation, id responseDic)
+                         {
+                             NSLog(@"REG_CHANGEPWD===%@",responseDic);
+                             NSDictionary *dic = (NSDictionary *)responseDic;
+                             //0:成功 417 失败
+                             NSString *errorCode = dic[@"errorCode"];
+                             NSString *description = dic[@"description"];
+                             description = (description) ? description : LOADING_FAIL;
+                             if ([@"0" isEqualToString:errorCode])
+                             {
+                                 [SVProgressHUD showSuccessWithStatus:LOADING_SUCESS];
+                                 [weakSelf gotoLogin];
+                             }
+                             else
+                             {
+                                 [SVProgressHUD showErrorWithStatus:description];
+                             }
+                         }
+                         requestFail:^(AFHTTPRequestOperation *operation, NSError *error)
+                         {
+                             [SVProgressHUD showErrorWithStatus:LOADING_FAIL];
+                         }];
+}
+
+
+//跳转到登录界面
+- (void)gotoLogin
+{
+    NSArray *array = self.navigationController.viewControllers;
+    UIViewController *viewController = ([array[1] isKindOfClass:[LoginViewController class]]) ? array[1] : array[0];
+    [self.navigationController popToViewController:viewController animated:YES];
+}
+
 
 #pragma mark  UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

@@ -15,6 +15,10 @@
 #define PWD_BTN_WIDTH       80.0
 #define REGISTE_BTN_SPACE   15.0
 
+#define LOADING_FAIL        @"登录失败"
+#define LOADING_SUCESS      @"登录成功"
+#define LOADING_TIP         @"正在登录..."
+
 @interface LoginViewController ()<UITextFieldDelegate>
 
 @property (nonatomic, strong) UITextField *usernameTextField;
@@ -56,6 +60,7 @@
     [CommonTool setViewLayer:_usernameTextField withLayerColor:[UIColor lightGrayColor] bordWidth:.5];
     [CommonTool clipView:_usernameTextField withCornerRadius:15.0];
     _usernameTextField.delegate = self;
+    _usernameTextField.text = @"15820790320";
     [self.view addSubview:_usernameTextField];
     
     start_y += _usernameTextField.frame.size.height + ADD_Y;
@@ -66,6 +71,7 @@
     [CommonTool clipView:_passwordTextField withCornerRadius:15.0];
     _passwordTextField.delegate = self;
     _passwordTextField.secureTextEntry = YES;
+    _passwordTextField.text = @"15820790320";
     [self.view addSubview:_passwordTextField];
     
     start_y += _passwordTextField.frame.size.height;
@@ -102,11 +108,12 @@
     [_passwordTextField resignFirstResponder];
     [_usernameTextField resignFirstResponder];
     
-    //if ([self isCanCommit])
+    if ([self isCanCommit])
     {
         //登录请求
         //[self dismissViewControllerAnimated:YES completion:^{}];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSucess" object:nil];
+        //[self loginRequest];
+        [self gotoMainView];
     }
 }
 
@@ -139,6 +146,48 @@
         return NO;
     }
 }
+
+#pragma mark 登录请求
+- (void)loginRequest
+{
+    [SVProgressHUD showWithStatus:LOADING_TIP];
+    __weak typeof(self) weakSelf = self;
+    NSDictionary *requestDic = @{@"logonAccount":_usernameTextField.text,@"logonPassword":_passwordTextField.text};
+    [[RequestTool alloc] requestWithUrl:LOGIN_URL
+                         requestParamas:requestDic
+                            requestType:RequestTypeAsynchronous
+                          requestSucess:^(AFHTTPRequestOperation *operation, id responseDic)
+                         {
+                             NSLog(@"LOGIN===%@",responseDic);
+                             NSDictionary *dic = (NSDictionary *)responseDic;
+                             //0:成功 401.1 账号或密码错误 404 账号不存在
+                             NSString *errorCode = dic[@"errorCode"];
+                             NSString *description = dic[@"description"];
+                             description = (description) ? description : LOADING_FAIL;
+                             //if ([@"0" isEqualToString:errorCode])
+                             {
+                                 [SVProgressHUD showSuccessWithStatus:LOADING_SUCESS];
+                                 [weakSelf gotoMainView];
+                             }
+                             //else
+                             //{
+                             //    [SVProgressHUD showErrorWithStatus:description];
+                             //}
+                         }
+                         requestFail:^(AFHTTPRequestOperation *operation, NSError *error)
+                         {
+                             [SVProgressHUD showErrorWithStatus:LOADING_FAIL];
+                         }];
+}
+
+
+//进入主界面
+- (void)gotoMainView
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSucess" object:nil];
+}
+
+
 
 #pragma mark  点击忘记密码按钮
 - (void)getPasswordButtonPrssed:(UIButton *)sender

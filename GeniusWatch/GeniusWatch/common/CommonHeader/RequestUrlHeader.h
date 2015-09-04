@@ -22,4 +22,10 @@
 //提交验证码
 #define CHECK_CODE_URL              MAKE_REQUEST_URL(@"login/validateMsgCode")
 
+//注册和忘记密码
+#define REG_CHANGEPWD_URL           MAKE_REQUEST_URL(@"login/postAccountPassword")
+
+//登录
+#define LOGIN_URL                   MAKE_REQUEST_URL(@"login/land")
+
 #endif

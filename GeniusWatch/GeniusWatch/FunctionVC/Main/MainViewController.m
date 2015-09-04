@@ -99,12 +99,20 @@
 //添加地图
 - (void)addMapView
 {
-    self.mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(MAP_SPACE_X, MAP_SPACE_Y, self.view.frame.size.width - 2 * MAP_SPACE_X, MAP_HEIGHT)];
-    self.mapView.delegate = self;
-    self.mapView.mapType = BMKMapTypeStandard;
-    self.mapView.zoomLevel = 15.0;
-    self.mapView.showsUserLocation = NO;
-    [self.view addSubview:self.mapView];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+                   ^{
+                       self.mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(MAP_SPACE_X, MAP_SPACE_Y, self.view.frame.size.width - 2 * MAP_SPACE_X, MAP_HEIGHT)];
+                       self.mapView.delegate = self;
+                       self.mapView.mapType = BMKMapTypeStandard;
+                       self.mapView.zoomLevel = 15.0;
+                       self.mapView.showsUserLocation = NO;
+                       dispatch_sync(dispatch_get_main_queue(), ^
+                       {
+                           [self.view insertSubview:self.mapView atIndex:0];
+
+                       });
+                    });
+    
 }
 
 //添加菜单按钮

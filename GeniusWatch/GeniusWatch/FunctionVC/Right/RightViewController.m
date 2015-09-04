@@ -36,7 +36,7 @@
 //添加背景图
 - (void)addBgImageView
 {
-    UIImageView *imageView = [CreateViewTool createImageViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) placeholderImage:[UIImage imageNamed:@"left_bg"]];
+    UIImageView *imageView = [CreateViewTool createImageViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) placeholderImage:[UIImage imageNamed:(SCREEN_HEIGHT == 480.0) ? @"left_bg1" : @"left_bg2"]];
     [self.view addSubview:imageView];
 }
 

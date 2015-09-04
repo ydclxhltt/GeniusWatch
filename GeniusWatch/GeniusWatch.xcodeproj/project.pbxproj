@@ -46,7 +46,6 @@
 		CE49EA591B96256D005C00E4 /* set_infomation_up.png in Resources */ = {isa = PBXBuildFile; fileRef = CE49EA4F1B96256D005C00E4 /* set_infomation_up.png */; };
 		CE49EA5B1B96256D005C00E4 /* set_linkman_up.png in Resources */ = {isa = PBXBuildFile; fileRef = CE49EA511B96256D005C00E4 /* set_linkman_up.png */; };
 		CE49EA5D1B96256D005C00E4 /* set_set_up.png in Resources */ = {isa = PBXBuildFile; fileRef = CE49EA531B96256D005C00E4 /* set_set_up.png */; };
-		CE49EA611B963049005C00E4 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE49EA601B963049005C00E4 /* iCarousel.m */; };
 		CEA606E01B8897E900C4DADE /* CommonTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA6064D1B8897E900C4DADE /* CommonTool.m */; };
 		CEA606E11B8897E900C4DADE /* CreateViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA6064F1B8897E900C4DADE /* CreateViewTool.m */; };
 		CEA606E21B8897E900C4DADE /* NSData+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA606531B8897E900C4DADE /* NSData+GIF.m */; };
@@ -88,13 +87,22 @@
 		CEA6070E1B889D1B00C4DADE /* BasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA6070D1B889D1B00C4DADE /* BasicViewController.m */; };
 		CEA607151B88B55C00C4DADE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA607141B88B55C00C4DADE /* CoreLocation.framework */; };
 		CEA607171B88B58B00C4DADE /* libc++abi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA607161B88B58B00C4DADE /* libc++abi.dylib */; };
-		CEA6071A1B88BD9D00C4DADE /* left_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA607191B88BD9D00C4DADE /* left_bg.png */; };
 		CEA6071D1B88C48A00C4DADE /* register_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA6071C1B88C48A00C4DADE /* register_bg.png */; };
 		CEA607211B88C4C900C4DADE /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA607201B88C4C900C4DADE /* IndexViewController.m */; };
 		CEA607281B88DAD200C4DADE /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA607271B88DAD200C4DADE /* RegisterViewController.m */; };
 		CEA6072B1B88DAE000C4DADE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA6072A1B88DAE000C4DADE /* LoginViewController.m */; };
 		CEA607311B88E1FF00C4DADE /* back_up.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA607301B88E1FF00C4DADE /* back_up.png */; };
 		CEA607341B88F82700C4DADE /* CheckCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA607331B88F82700C4DADE /* CheckCodeViewController.m */; };
+		CEB7E9CE1B99CC4D00A6A479 /* PageFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB7E9CD1B99CC4D00A6A479 /* PageFlowView.m */; };
+		CEB7E9D01B99F94D00A6A479 /* personal_add.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB7E9CF1B99F94D00A6A479 /* personal_add.png */; };
+		CEB7E9D91B9A059600A6A479 /* left_bg1.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB7E9D71B9A059600A6A479 /* left_bg1.png */; };
+		CEB7E9DA1B9A059600A6A479 /* left_bg2.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB7E9D81B9A059600A6A479 /* left_bg2.png */; };
+		CEB7E9DC1B9A089E00A6A479 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB7E9DB1B9A089E00A6A479 /* AVFoundation.framework */; };
+		CEB7E9DF1B9A090400A6A479 /* AddWatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB7E9DE1B9A090400A6A479 /* AddWatchViewController.m */; };
+		CEB7E9E21B9A0B1000A6A479 /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB7E9E01B9A0B1000A6A479 /* line.png */; };
+		CEB7E9E31B9A0B1000A6A479 /* pick_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB7E9E11B9A0B1000A6A479 /* pick_bg.png */; };
+		CEB7E9E61B9A176900A6A479 /* AutoAddWatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB7E9E51B9A176900A6A479 /* AutoAddWatchViewController.m */; };
+		CEDB97C41B9A2D2C00A04AE5 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDB97C31B9A2D2C00A04AE5 /* SettingViewController.m */; };
 		CEE0888C1B89C0F8008A2D2A /* SetPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE0888B1B89C0F8008A2D2A /* SetPassWordViewController.m */; };
 		CEFD2F9A1B95F0A8007587CD /* LeftTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFD2F991B95F0A8007587CD /* LeftTableViewCell.m */; };
 /* End PBXBuildFile section */
@@ -161,8 +169,6 @@
 		CE49EA4F1B96256D005C00E4 /* set_infomation_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = set_infomation_up.png; sourceTree = "<group>"; };
 		CE49EA511B96256D005C00E4 /* set_linkman_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = set_linkman_up.png; sourceTree = "<group>"; };
 		CE49EA531B96256D005C00E4 /* set_set_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = set_set_up.png; sourceTree = "<group>"; };
-		CE49EA5F1B963049005C00E4 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
-		CE49EA601B963049005C00E4 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		CEA6064C1B8897E900C4DADE /* CommonTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTool.h; sourceTree = "<group>"; };
 		CEA6064D1B8897E900C4DADE /* CommonTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTool.m; sourceTree = "<group>"; };
 		CEA6064E1B8897E900C4DADE /* CreateViewTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateViewTool.h; sourceTree = "<group>"; };
@@ -306,7 +312,6 @@
 		CEA6070D1B889D1B00C4DADE /* BasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicViewController.m; sourceTree = "<group>"; };
 		CEA607141B88B55C00C4DADE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CEA607161B88B58B00C4DADE /* libc++abi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++abi.dylib"; path = "usr/lib/libc++abi.dylib"; sourceTree = SDKROOT; };
-		CEA607191B88BD9D00C4DADE /* left_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_bg.png; sourceTree = "<group>"; };
 		CEA6071C1B88C48A00C4DADE /* register_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = register_bg.png; sourceTree = "<group>"; };
 		CEA6071F1B88C4C900C4DADE /* IndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexViewController.h; sourceTree = "<group>"; };
 		CEA607201B88C4C900C4DADE /* IndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexViewController.m; sourceTree = "<group>"; };
@@ -317,6 +322,20 @@
 		CEA607301B88E1FF00C4DADE /* back_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_up.png; sourceTree = "<group>"; };
 		CEA607321B88F82700C4DADE /* CheckCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckCodeViewController.h; sourceTree = "<group>"; };
 		CEA607331B88F82700C4DADE /* CheckCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckCodeViewController.m; sourceTree = "<group>"; };
+		CEB7E9CC1B99CC4D00A6A479 /* PageFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageFlowView.h; sourceTree = "<group>"; };
+		CEB7E9CD1B99CC4D00A6A479 /* PageFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageFlowView.m; sourceTree = "<group>"; };
+		CEB7E9CF1B99F94D00A6A479 /* personal_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = personal_add.png; sourceTree = "<group>"; };
+		CEB7E9D71B9A059600A6A479 /* left_bg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_bg1.png; sourceTree = "<group>"; };
+		CEB7E9D81B9A059600A6A479 /* left_bg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_bg2.png; sourceTree = "<group>"; };
+		CEB7E9DB1B9A089E00A6A479 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		CEB7E9DD1B9A090400A6A479 /* AddWatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddWatchViewController.h; sourceTree = "<group>"; };
+		CEB7E9DE1B9A090400A6A479 /* AddWatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddWatchViewController.m; sourceTree = "<group>"; };
+		CEB7E9E01B9A0B1000A6A479 /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
+		CEB7E9E11B9A0B1000A6A479 /* pick_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pick_bg.png; sourceTree = "<group>"; };
+		CEB7E9E41B9A176900A6A479 /* AutoAddWatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoAddWatchViewController.h; sourceTree = "<group>"; };
+		CEB7E9E51B9A176900A6A479 /* AutoAddWatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoAddWatchViewController.m; sourceTree = "<group>"; };
+		CEDB97C21B9A2D2C00A04AE5 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		CEDB97C31B9A2D2C00A04AE5 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		CEE0888A1B89C0F8008A2D2A /* SetPassWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetPassWordViewController.h; sourceTree = "<group>"; };
 		CEE0888B1B89C0F8008A2D2A /* SetPassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPassWordViewController.m; sourceTree = "<group>"; };
 		CEFD2F981B95F0A8007587CD /* LeftTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftTableViewCell.h; sourceTree = "<group>"; };
@@ -328,6 +347,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEB7E9DC1B9A089E00A6A479 /* AVFoundation.framework in Frameworks */,
 				CEA607171B88B58B00C4DADE /* libc++abi.dylib in Frameworks */,
 				CEA607151B88B55C00C4DADE /* CoreLocation.framework in Frameworks */,
 				77D354651B8729530055B0B7 /* libz.dylib in Frameworks */,
@@ -386,6 +406,7 @@
 				77D3543C1B8721D10055B0B7 /* images */,
 				77D354641B8729530055B0B7 /* libz.dylib */,
 				CEA607161B88B58B00C4DADE /* libc++abi.dylib */,
+				CEB7E9DB1B9A089E00A6A479 /* AVFoundation.framework */,
 				CEA607141B88B55C00C4DADE /* CoreLocation.framework */,
 				77D354621B8729480055B0B7 /* Foundation.framework */,
 				77D3545E1B8729020055B0B7 /* CoreGraphics.framework */,
@@ -498,6 +519,7 @@
 		77D354441B8723530055B0B7 /* Right */ = {
 			isa = PBXGroup;
 			children = (
+				CEDB97C11B9A2D0900A04AE5 /* Setting */,
 				77D3544F1B8725810055B0B7 /* RightViewController.h */,
 				77D354501B8725810055B0B7 /* RightViewController.m */,
 			);
@@ -551,8 +573,8 @@
 		CE49EA5E1B963049005C00E4 /* CoverFlow */ = {
 			isa = PBXGroup;
 			children = (
-				CE49EA5F1B963049005C00E4 /* iCarousel.h */,
-				CE49EA601B963049005C00E4 /* iCarousel.m */,
+				CEB7E9CC1B99CC4D00A6A479 /* PageFlowView.h */,
+				CEB7E9CD1B99CC4D00A6A479 /* PageFlowView.m */,
 			);
 			path = CoverFlow;
 			sourceTree = "<group>";
@@ -803,10 +825,12 @@
 		CEA607181B88BD9D00C4DADE /* left */ = {
 			isa = PBXGroup;
 			children = (
+				CEB7E9D71B9A059600A6A479 /* left_bg1.png */,
+				CEB7E9D81B9A059600A6A479 /* left_bg2.png */,
+				CEB7E9CF1B99F94D00A6A479 /* personal_add.png */,
 				CE300BAA1B983190003D71AF /* personal_watch.png */,
 				CE300B9C1B97FEAA003D71AF /* personal_baby.png */,
 				CE300B9D1B97FEAA003D71AF /* personal_watch_set.png */,
-				CEA607191B88BD9D00C4DADE /* left_bg.png */,
 			);
 			path = left;
 			sourceTree = "<group>";
@@ -814,6 +838,8 @@
 		CEA6071B1B88C48A00C4DADE /* register_login */ = {
 			isa = PBXGroup;
 			children = (
+				CEB7E9E01B9A0B1000A6A479 /* line.png */,
+				CEB7E9E11B9A0B1000A6A479 /* pick_bg.png */,
 				CEA607301B88E1FF00C4DADE /* back_up.png */,
 				CEA6071C1B88C48A00C4DADE /* register_bg.png */,
 			);
@@ -833,8 +859,21 @@
 				CEA607331B88F82700C4DADE /* CheckCodeViewController.m */,
 				CEE0888A1B89C0F8008A2D2A /* SetPassWordViewController.h */,
 				CEE0888B1B89C0F8008A2D2A /* SetPassWordViewController.m */,
+				CEB7E9DD1B9A090400A6A479 /* AddWatchViewController.h */,
+				CEB7E9DE1B9A090400A6A479 /* AddWatchViewController.m */,
+				CEB7E9E41B9A176900A6A479 /* AutoAddWatchViewController.h */,
+				CEB7E9E51B9A176900A6A479 /* AutoAddWatchViewController.m */,
 			);
 			path = Register_Login;
+			sourceTree = "<group>";
+		};
+		CEDB97C11B9A2D0900A04AE5 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				CEDB97C21B9A2D2C00A04AE5 /* SettingViewController.h */,
+				CEDB97C31B9A2D2C00A04AE5 /* SettingViewController.m */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -889,6 +928,7 @@
 					};
 					77D3542B1B87210D0055B0B7 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = LU76V63D2G;
 						TestTargetID = 77D3540F1B87210C0055B0B7;
 					};
 				};
@@ -921,6 +961,7 @@
 				CE300BAB1B983190003D71AF /* personal_watch.png in Resources */,
 				CE49EA461B961C84005C00E4 /* baby_head_up.png in Resources */,
 				CE300BB61B983506003D71AF /* error@2x.png in Resources */,
+				CEB7E9DA1B9A059600A6A479 /* left_bg2.png in Resources */,
 				CE49EA401B961432005C00E4 /* homepage_more_up.png in Resources */,
 				CE300BA91B981DB0003D71AF /* Empty.xib in Resources */,
 				CE300BA31B98094E003D71AF /* bottom.png in Resources */,
@@ -933,20 +974,23 @@
 				776D53F81B96E2A700D1DD62 /* homepage_school_up.png in Resources */,
 				776D54021B96E6A800D1DD62 /* homepage_chat_up.png in Resources */,
 				CE300BB71B983506003D71AF /* success.png in Resources */,
+				CEB7E9E21B9A0B1000A6A479 /* line.png in Resources */,
 				CE49EA571B96256D005C00E4 /* set_feedback_up.png in Resources */,
 				CE300BB81B983506003D71AF /* success@2x.png in Resources */,
 				CE300BA41B98094E003D71AF /* middle.png in Resources */,
 				CE300BA71B981314003D71AF /* school_up.png in Resources */,
+				CEB7E9D01B99F94D00A6A479 /* personal_add.png in Resources */,
 				CE49EA551B96256D005C00E4 /* set_charge_up.png in Resources */,
 				CE49EA591B96256D005C00E4 /* set_infomation_up.png in Resources */,
 				CEA6071D1B88C48A00C4DADE /* register_bg.png in Resources */,
-				CEA6071A1B88BD9D00C4DADE /* left_bg.png in Resources */,
 				CE49EA481B961F5D005C00E4 /* homepage_cell.png in Resources */,
 				CE300BB91B983506003D71AF /* SVProgressHUD.bundle in Resources */,
 				CE300BA51B98094E003D71AF /* top.png in Resources */,
+				CEB7E9E31B9A0B1000A6A479 /* pick_bg.png in Resources */,
 				77D354241B87210D0055B0B7 /* Images.xcassets in Resources */,
 				CE300BB51B983506003D71AF /* error.png in Resources */,
 				776D54041B96E6A800D1DD62 /* homepage_location_up.png in Resources */,
+				CEB7E9D91B9A059600A6A479 /* left_bg1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -964,6 +1008,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEB7E9DF1B9A090400A6A479 /* AddWatchViewController.m in Sources */,
 				CEA606F31B8897E900C4DADE /* AFHTTPRequestOperation.m in Sources */,
 				77D354191B87210D0055B0B7 /* AppDelegate.m in Sources */,
 				CEA606E01B8897E900C4DADE /* CommonTool.m in Sources */,
@@ -972,6 +1017,7 @@
 				CEA606EA1B8897E900C4DADE /* SDWebImagePrefetcher.m in Sources */,
 				CEA607041B8897E900C4DADE /* UIWebView+AFNetworking.m in Sources */,
 				CEA606E91B8897E900C4DADE /* SDWebImageManager.m in Sources */,
+				CEDB97C41B9A2D2C00A04AE5 /* SettingViewController.m in Sources */,
 				77D3544E1B8725730055B0B7 /* MainViewController.m in Sources */,
 				CE300BBA1B983506003D71AF /* SVProgressHUD.m in Sources */,
 				CEA607031B8897E900C4DADE /* UIRefreshControl+AFNetworking.m in Sources */,
@@ -984,16 +1030,17 @@
 				CEA606FE1B8897E900C4DADE /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				CEA606F41B8897E900C4DADE /* AFHTTPRequestOperationManager.m in Sources */,
 				CEE0888C1B89C0F8008A2D2A /* SetPassWordViewController.m in Sources */,
+				CEB7E9E61B9A176900A6A479 /* AutoAddWatchViewController.m in Sources */,
 				CEA606EF1B8897E900C4DADE /* THProgressView.m in Sources */,
 				CEA606E51B8897E900C4DADE /* SDWebImageCompat.m in Sources */,
 				CEFD2F9A1B95F0A8007587CD /* LeftTableViewCell.m in Sources */,
 				CEA607021B8897E900C4DADE /* UIProgressView+AFNetworking.m in Sources */,
-				CE49EA611B963049005C00E4 /* iCarousel.m in Sources */,
 				CEA606F01B8897E900C4DADE /* UIImageView+LK.m in Sources */,
 				CEA606E61B8897E900C4DADE /* SDWebImageDecoder.m in Sources */,
 				CEA6070E1B889D1B00C4DADE /* BasicViewController.m in Sources */,
 				CEA606ED1B8897E900C4DADE /* UIImage+MultiFormat.m in Sources */,
 				CEA606FB1B8897E900C4DADE /* AFURLSessionManager.m in Sources */,
+				CEB7E9CE1B99CC4D00A6A479 /* PageFlowView.m in Sources */,
 				CEA606E81B8897E900C4DADE /* SDWebImageDownloaderOperation.m in Sources */,
 				CEA606F71B8897E900C4DADE /* AFSecurityPolicy.m in Sources */,
 				CEA606FF1B8897E900C4DADE /* UIAlertView+AFNetworking.m in Sources */,
@@ -1123,18 +1170,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 磊 陈 (47PU6N76KB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 磊 陈 (47PU6N76KB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: TIANHUI HE (MN4GAE5E29)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: TIANHUI HE (MN4GAE5E29)";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GeniusWatch.pch";
 				INFOPLIST_FILE = GeniusWatch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GeniusWatch/common/CommonTools/MapTool/BaiDuMap",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ba20776d-e323-4edf-b654-f4903fdf787c";
+				PROVISIONING_PROFILE = "2c9bb0c5-b624-42b0-934b-eb0a72bf115c";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1143,18 +1191,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 磊 陈 (47PU6N76KB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 磊 陈 (47PU6N76KB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: TIANHUI HE (MN4GAE5E29)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: TIANHUI HE (MN4GAE5E29)";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GeniusWatch.pch";
 				INFOPLIST_FILE = GeniusWatch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GeniusWatch/common/CommonTools/MapTool/BaiDuMap",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ba20776d-e323-4edf-b654-f4903fdf787c";
+				PROVISIONING_PROFILE = "2c9bb0c5-b624-42b0-934b-eb0a72bf115c";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1162,6 +1211,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1173,6 +1224,7 @@
 				INFOPLIST_FILE = GeniusWatchTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GeniusWatch.app/GeniusWatch";
 			};
 			name = Debug;
@@ -1181,6 +1233,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1188,6 +1242,7 @@
 				INFOPLIST_FILE = GeniusWatchTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GeniusWatch.app/GeniusWatch";
 			};
 			name = Release;

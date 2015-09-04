@@ -7,23 +7,28 @@
 //
 
 #import "LeftViewController.h"
-#import "iCarousel.h"
+#import "PageFlowView.h"
+#import "AddWatchViewController.h"
 
 
 #define NUMBER_OF_VISIBLE_ITEMS     2
-#define ITEM_SPACING                160.0
 #define INCLUDE_PLACEHOLDERS        YES
-#define SPACE_Y                     44.0
-#define ROW_HEIGHT                  60.0
-#define ADD_Y                       20.0 * CURRENT_SCALE
+#define SPACE_Y                     64.0
+#define ROW_HEIGHT                  80.0 * CURRENT_SCALE
+#define ADD_Y                       60.0 * CURRENT_SCALE
+#define SPACE_X                     47.0 * CURRENT_SCALE
 
 
-@interface LeftViewController ()<iCarouselDataSource,iCarouselDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface LeftViewController ()<PageFlowViewDelegate,PageFlowViewDataSource,UITableViewDataSource,UITableViewDelegate>
 {
-    iCarousel *carouselView;
+    float flowViewHeight;
+    float flowViewWidth;
 }
+
+@property (nonatomic, strong) PageFlowView  *flowView;
 @property (nonatomic, strong) NSArray *titleArray;
 @property (nonatomic, strong) NSArray *imageArray;
+@property (nonatomic, strong) NSArray *babyImageArray;
 @end
 
 @implementation LeftViewController
@@ -56,7 +61,7 @@
 //添加背景图
 - (void)addBgImageView
 {
-    UIImageView *imageView = [CreateViewTool createImageViewWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height) placeholderImage:[UIImage imageNamed:@"left_bg"]];
+    UIImageView *imageView = [CreateViewTool createImageViewWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height) placeholderImage:[UIImage imageNamed:(SCREEN_HEIGHT == 480.0) ? @"left_bg1" : @"left_bg2"]];
     [self.contentView addSubview:imageView];
 }
 
@@ -65,20 +70,27 @@
 {
     //create carousel
     UIImage *image = [UIImage imageNamed:@"baby_head_up"];
-    float height = image.size.height * 2/3 * CURRENT_SCALE;
-    float width = image.size.width * 2/3 * CURRENT_SCALE;
-    carouselView = [[iCarousel alloc] initWithFrame:CGRectMake((LEFT_SIDE_WIDTH - width)/2, SPACE_Y, width, height)];
-    carouselView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    carouselView.type = iCarouselTypeRotary;
-    carouselView.delegate = self;
-    carouselView.dataSource = self;
-    [self.contentView addSubview:carouselView];
+    flowViewHeight = image.size.height * 2 / 5 * CURRENT_SCALE;
+    flowViewWidth = image.size.width * 2 /5 * CURRENT_SCALE;
+    
+    self.babyImageArray = @[@"baby_head_up",@"personal_add"];
+    
+    _flowView = [[PageFlowView alloc] initWithFrame:CGRectMake(0, SPACE_Y, LEFT_SIDE_WIDTH, flowViewHeight)];
+    _flowView.delegate = self;
+    _flowView.dataSource = self;
+    _flowView.minimumPageAlpha = 0.6;
+    _flowView.minimumPageScale = 0.7;
+    _flowView.defaultImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"baby_head_up"]];
+    [self.view addSubview:_flowView];
+    [_flowView reloadData];
+
+    [self.contentView addSubview:_flowView];
 }
 
 //添加tableView
 - (void)addTableView
 {
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, carouselView.frame.size.height + carouselView.frame.origin.y + ADD_Y, LEFT_SIDE_WIDTH, ROW_HEIGHT * [self.titleArray count]) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(SPACE_X, _flowView.frame.size.height + _flowView.frame.origin.y + ADD_Y, LEFT_SIDE_WIDTH - SPACE_X, ROW_HEIGHT * [self.titleArray count]) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.scrollEnabled = NO;
@@ -106,9 +118,8 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.backgroundColor = [UIColor clearColor];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.imageView.transform = CGAffineTransformMakeScale(0.5, 0.5);
-        //[[NSNotificationCenter defaultCenter] addObserver:@(cell.isSelected) forKeyPath:@"Selected" options:NSKeyValueObservingOptionNew context:nil];
     }
     
     cell.imageView.image = [UIImage imageNamed:self.imageArray[indexPath.row]];
@@ -123,77 +134,61 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark iCarousel methods
 
-- (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel
+#pragma mark - PagedFlowView Datasource
+//返回显示View的个数
+- (NSInteger)numberOfPagesInFlowView:(PageFlowView *)flowView
 {
-    return 2;
+    return [self.babyImageArray count];
 }
 
-- (NSUInteger)numberOfVisibleItemsInCarousel:(iCarousel *)carousel
+- (CGSize)sizeForPageInFlowView:(PageFlowView *)flowView
 {
-    //limit the number of items views loaded concurrently (for performance reasons)
-    return NUMBER_OF_VISIBLE_ITEMS;
+    return CGSizeMake(flowViewWidth, flowViewHeight);
 }
 
-- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view
+//返回给某列使用的View
+- (UIView *)flowView:(PageFlowView *)flowView cellForPageAtIndex:(NSInteger)index
 {
-
-    //create new view if no view is available for recycling
-    if (view == nil)
+    UIImageView *imageView = (UIImageView *)[flowView dequeueReusableCell];
+    if (!imageView)
     {
-        UIImage *image = [UIImage imageNamed:@"baby_head_up"];
-        view = [CreateViewTool createRoundImageViewWithFrame:CGRectMake(0, 0, carousel.frame.size.width, carousel.frame.size.height) placeholderImage:image borderColor:[UIColor whiteColor] imageUrl:nil];
-        [CommonTool setViewLayer:view withLayerColor:[UIColor whiteColor] bordWidth:1.0];
-        [CommonTool clipView:view withCornerRadius:view.frame.size.width/2];
+        imageView = [[UIImageView alloc] init] ;
     }
-
-    return view;
+    imageView.image = [UIImage imageNamed:[self.babyImageArray objectAtIndex:index]];
+    return imageView;
 }
 
-- (NSUInteger)numberOfPlaceholdersInCarousel:(iCarousel *)carousel
+#pragma mark - PagedFlowView Delegate
+- (void)didReloadData:(UIView *)cell cellForPageAtIndex:(NSInteger)index
 {
-    //note: placeholder views are only displayed if wrapping is disabled
-    return INCLUDE_PLACEHOLDERS? 2: 0;
+    UIImageView *imageView = (UIImageView *)cell;
+    imageView.image = [UIImage imageNamed:[self.babyImageArray objectAtIndex:index]];
 }
 
-- (UIView *)carousel:(iCarousel *)carousel placeholderViewAtIndex:(NSUInteger)index reusingView:(UIView *)view
+- (void)didScrollToPage:(NSInteger)pageNumber inFlowView:(PageFlowView *)flowView
 {
-    
-    //create new view if no view is available for recycling
-    if (view == nil)
+    NSLog(@"Scrolled to page # %ld", (long)pageNumber);
+}
+
+- (void)didSelectItemAtIndex:(NSInteger)index inFlowView:(PageFlowView *)flowView
+{
+    NSLog(@"didSelectItemAtIndex: %ld", (long)index);
+    if (index == [self.babyImageArray count] - 1)
     {
-        view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"baby_head_up.png"]];
+        [self addBabyWatch];
     }
-    
-    
-    return view;
 }
 
-- (CGFloat)carouselItemWidth:(iCarousel *)carousel
+#pragma mark 添加手表
+- (void)addBabyWatch
 {
-    //slightly wider than item view
-    return ITEM_SPACING;
+    AddWatchViewController *addWatchViewController = [[AddWatchViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:addWatchViewController];
+    [self presentViewController:nav animated:YES completion:^{}];
 }
 
-- (CGFloat)carousel:(iCarousel *)carousel itemAlphaForOffset:(CGFloat)offset
-{
-    //set opacity based on distance from camera
-    return 1.0f - fminf(fmaxf(offset, 0.0f), 1.0f);
-}
 
-- (CATransform3D)carousel:(iCarousel *)_carousel itemTransformForOffset:(CGFloat)offset baseTransform:(CATransform3D)transform
-{
-    //implement 'flip3D' style carousel
-    transform = CATransform3DRotate(transform, M_PI / 8.0f, 0.0f, 1.0f, 0.0f);
-    return CATransform3DTranslate(transform, 0.0f, 0.0f, offset * carouselView.itemWidth);
-}
-
-- (BOOL)carouselShouldWrap:(iCarousel *)carousel
-{
-    //wrap all carousels
-    return YES;
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

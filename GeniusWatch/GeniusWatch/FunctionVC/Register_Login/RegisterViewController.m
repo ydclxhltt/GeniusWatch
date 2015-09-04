@@ -103,7 +103,8 @@
 {
     __weak typeof(self) weakSelf = self;
     [SVProgressHUD showWithStatus:LOADING];
-    NSDictionary *requestDic = @{@"mobileNo":_phoneNumberTextField.text};
+    NSString *type = (self.pushType == PushTypeRegister) ? @"reg" : @"chgpwd";
+    NSDictionary *requestDic = @{@"mobileNo":_phoneNumberTextField.text,@"type":type};
     [[RequestTool alloc] requestWithUrl:CHECK_PHONENUMBER_URL
                          requestParamas:requestDic
                             requestType:RequestTypeAsynchronous
