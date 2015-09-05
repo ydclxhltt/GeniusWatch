@@ -17,7 +17,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:NO];
+    //[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"land_navigation"] forBarMetrics:UIBarMetricsDefault];
+    //[self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{ NSForegroundColorAttributeName:APP_MAIN_COLOR}];
     self.view.backgroundColor = [UIColor whiteColor];
+    //self.navigationController.navigationBar.translucent = YES;
+    //self.automaticallyAdjustsScrollViewInsets = NO;
     // Do any additional setup after loading the view.
 }
 
@@ -94,6 +100,17 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+#pragma mark 添加表
+//添加表
+- (void)addTableViewWithFrame:(CGRect)frame tableType:(UITableViewStyle)type tableDelegate:(id)delegate
+{
+    _table=[[UITableView alloc]initWithFrame:frame style:type];
+    _table.dataSource=delegate;
+    _table.delegate=delegate;
+    [self.view addSubview:_table];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

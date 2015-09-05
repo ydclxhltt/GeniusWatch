@@ -7,13 +7,16 @@
 //
 
 #import "RightViewController.h"
+#import "SettingViewController.h"
 
 #define SPACE_Y       100.0
 #define TITLE_HEIGHT  20.0
 #define ADD_Y         20.0
 
 @interface RightViewController ()
-
+{
+    NSArray *titleArray;
+}
 @end
 
 @implementation RightViewController
@@ -43,7 +46,7 @@
 //添加功能按钮
 - (void)addButtons
 {
-    NSArray *titleArray = @[@"通讯录",@"消息记录",@"手机话费",@"APP设置",@"问题与反馈"];
+    titleArray = @[@"通讯录",@"消息记录",@"手机话费",@"APP设置",@"问题与反馈"];
     NSArray *imageArray = @[@"set_linkman",@"set_infomation",@"set_charge",@"set_set",@"set_feedback"];
     UIImage *image = [UIImage imageNamed:[imageArray[0] stringByAppendingString:@"_up"]];
     float buttonHeight = image.size.height/3 * CURRENT_SCALE;
@@ -51,6 +54,7 @@
     for (int i = 0; i < [titleArray count]; i++)
     {
         UIButton *button = [CreateViewTool createButtonWithFrame:CGRectMake(self.view.frame.size.width - RIGHT_SIDE_WIDTH + (RIGHT_SIDE_WIDTH - buttonWidth)/2, SPACE_Y + i * (buttonHeight + TITLE_HEIGHT + ADD_Y), buttonWidth, buttonHeight) buttonImage:imageArray[i] selectorName:@"buttonPressed:" tagDelegate:self];
+        button.tag = i + 1;
         [self.view addSubview:button];
         
         UILabel *label = [CreateViewTool createLabelWithFrame:CGRectMake(self.view.frame.size.width - RIGHT_SIDE_WIDTH, button.frame.size.height + button.frame.origin.y, RIGHT_SIDE_WIDTH, TITLE_HEIGHT) textString:titleArray[i] textColor:[UIColor whiteColor] textFont:FONT(14.0)];
@@ -62,7 +66,19 @@
 #pragma mark 点击功能按钮响应事件
 - (void)buttonPressed:(UIButton *)sender
 {
-    
+    int tag = (int)sender.tag;
+    SettingViewController *viewController = [[SettingViewController alloc] init];
+//    switch (tag)
+//    {
+//        case 4:
+//            viewController = [[SettingViewController alloc] init];
+//            break;
+//            
+//        default:
+//            break;
+//    }
+    viewController.title = titleArray[tag - 1];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 

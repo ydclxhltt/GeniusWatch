@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #define TEXTFIELD_HEIGHT    35.0
-#define BUTTON_HEIGHT       40.0
+#define BUTTON_HEIGHT       35.0
 
 typedef enum : NSUInteger
 {
@@ -27,6 +27,8 @@ typedef enum : NSUInteger {
 {
     float start_y;
 }
+
+@property (nonatomic, strong) UITableView *table;
 
 /*
  *  设置导航条Item
@@ -51,5 +53,14 @@ typedef enum : NSUInteger {
  */
 - (void)addBackItem;
 
+/*
+ *  添加表视图，如：tableView
+ *
+ *  @param frame     tableView的frame
+ *  @param type      UITableViewStyle
+ *  @param delegate  tableView的委托对象
+ *
+ */
+- (void)addTableViewWithFrame:(CGRect)frame tableType:(UITableViewStyle)type tableDelegate:(id)delegate;
 
 @end
