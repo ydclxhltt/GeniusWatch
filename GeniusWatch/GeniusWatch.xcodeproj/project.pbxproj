@@ -27,6 +27,12 @@
 		77D3545F1B8729020055B0B7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77D3545E1B8729020055B0B7 /* CoreGraphics.framework */; };
 		77D354631B8729480055B0B7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77D354621B8729480055B0B7 /* Foundation.framework */; };
 		77D354651B8729530055B0B7 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 77D354641B8729530055B0B7 /* libz.dylib */; };
+		CE2B708C1B9C6A3E00075911 /* location_location_down.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2B70861B9C6A3E00075911 /* location_location_down.png */; };
+		CE2B708D1B9C6A3E00075911 /* location_location_up.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2B70871B9C6A3E00075911 /* location_location_up.png */; };
+		CE2B708E1B9C6A3E00075911 /* location_zoom_amplification_down.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2B70881B9C6A3E00075911 /* location_zoom_amplification_down.png */; };
+		CE2B708F1B9C6A3E00075911 /* location_zoom_amplification_up.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2B70891B9C6A3E00075911 /* location_zoom_amplification_up.png */; };
+		CE2B70901B9C6A3E00075911 /* location_zoom_shrink_down.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2B708A1B9C6A3E00075911 /* location_zoom_shrink_down.png */; };
+		CE2B70911B9C6A3E00075911 /* location_zoom_shrink_up.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2B708B1B9C6A3E00075911 /* location_zoom_shrink_up.png */; };
 		CE300B9E1B97FEAA003D71AF /* personal_baby.png in Resources */ = {isa = PBXBuildFile; fileRef = CE300B9C1B97FEAA003D71AF /* personal_baby.png */; };
 		CE300B9F1B97FEAA003D71AF /* personal_watch_set.png in Resources */ = {isa = PBXBuildFile; fileRef = CE300B9D1B97FEAA003D71AF /* personal_watch_set.png */; };
 		CE300BA31B98094E003D71AF /* bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = CE300BA01B98094E003D71AF /* bottom.png */; };
@@ -156,6 +162,12 @@
 		77D3545E1B8729020055B0B7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		77D354621B8729480055B0B7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		77D354641B8729530055B0B7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		CE2B70861B9C6A3E00075911 /* location_location_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location_location_down.png; sourceTree = "<group>"; };
+		CE2B70871B9C6A3E00075911 /* location_location_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location_location_up.png; sourceTree = "<group>"; };
+		CE2B70881B9C6A3E00075911 /* location_zoom_amplification_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location_zoom_amplification_down.png; sourceTree = "<group>"; };
+		CE2B70891B9C6A3E00075911 /* location_zoom_amplification_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location_zoom_amplification_up.png; sourceTree = "<group>"; };
+		CE2B708A1B9C6A3E00075911 /* location_zoom_shrink_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location_zoom_shrink_down.png; sourceTree = "<group>"; };
+		CE2B708B1B9C6A3E00075911 /* location_zoom_shrink_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location_zoom_shrink_up.png; sourceTree = "<group>"; };
 		CE300B9C1B97FEAA003D71AF /* personal_baby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = personal_baby.png; sourceTree = "<group>"; };
 		CE300B9D1B97FEAA003D71AF /* personal_watch_set.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = personal_watch_set.png; sourceTree = "<group>"; };
 		CE300BA01B98094E003D71AF /* bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottom.png; sourceTree = "<group>"; };
@@ -836,6 +848,12 @@
 		CEA607111B88ACB500C4DADE /* home */ = {
 			isa = PBXGroup;
 			children = (
+				CE2B70861B9C6A3E00075911 /* location_location_down.png */,
+				CE2B70871B9C6A3E00075911 /* location_location_up.png */,
+				CE2B70881B9C6A3E00075911 /* location_zoom_amplification_down.png */,
+				CE2B70891B9C6A3E00075911 /* location_zoom_amplification_up.png */,
+				CE2B708A1B9C6A3E00075911 /* location_zoom_shrink_down.png */,
+				CE2B708B1B9C6A3E00075911 /* location_zoom_shrink_up.png */,
 				77C5F4481B9C3874009996BC /* location_map_model_down.png */,
 				77C5F4491B9C3874009996BC /* location_map_model_up.png */,
 				7795517E1B9C207600F587BD /* homepage_school_up.png */,
@@ -988,8 +1006,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE2B708E1B9C6A3E00075911 /* location_zoom_amplification_down.png in Resources */,
 				CE300B9E1B97FEAA003D71AF /* personal_baby.png in Resources */,
 				CE300BAB1B983190003D71AF /* personal_watch.png in Resources */,
+				CE2B708D1B9C6A3E00075911 /* location_location_up.png in Resources */,
 				CE49EA461B961C84005C00E4 /* baby_head_up.png in Resources */,
 				CE300BB61B983506003D71AF /* error@2x.png in Resources */,
 				CE8356EC1B9A3777005B2313 /* app_set_after_password.png in Resources */,
@@ -1007,12 +1027,16 @@
 				CEA607311B88E1FF00C4DADE /* back_up.png in Resources */,
 				776D54021B96E6A800D1DD62 /* homepage_chat_up.png in Resources */,
 				CE300BB71B983506003D71AF /* success.png in Resources */,
+				CE2B708F1B9C6A3E00075911 /* location_zoom_amplification_up.png in Resources */,
 				CEB7E9E21B9A0B1000A6A479 /* line.png in Resources */,
 				CE49EA571B96256D005C00E4 /* set_feedback_up.png in Resources */,
+				CE2B708C1B9C6A3E00075911 /* location_location_down.png in Resources */,
 				CE300BB81B983506003D71AF /* success@2x.png in Resources */,
 				77C5F44B1B9C3874009996BC /* location_map_model_up.png in Resources */,
+				CE2B70911B9C6A3E00075911 /* location_zoom_shrink_up.png in Resources */,
 				CE300BA41B98094E003D71AF /* middle.png in Resources */,
 				CE8356EA1B9A3777005B2313 /* app_set_after_eliminate.png in Resources */,
+				CE2B70901B9C6A3E00075911 /* location_zoom_shrink_down.png in Resources */,
 				CE8356E91B9A3777005B2313 /* app_set_after_app.png in Resources */,
 				CEC3D39C1B9AE3A3000E7126 /* land_navigation.png in Resources */,
 				CEB7E9D01B99F94D00A6A479 /* personal_add.png in Resources */,
@@ -1208,8 +1232,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 磊 陈 (47PU6N76KB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 磊 陈 (47PU6N76KB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: TIANHUI HE (MN4GAE5E29)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: TIANHUI HE (MN4GAE5E29)";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GeniusWatch.pch";
 				INFOPLIST_FILE = GeniusWatch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1219,7 +1243,7 @@
 					"$(PROJECT_DIR)/GeniusWatch/common/CommonTools/MapTool/BaiDuMap",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ba20776d-e323-4edf-b654-f4903fdf787c";
+				PROVISIONING_PROFILE = "2c9bb0c5-b624-42b0-934b-eb0a72bf115c";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1229,8 +1253,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 磊 陈 (47PU6N76KB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 磊 陈 (47PU6N76KB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: TIANHUI HE (MN4GAE5E29)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: TIANHUI HE (MN4GAE5E29)";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GeniusWatch.pch";
 				INFOPLIST_FILE = GeniusWatch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1240,7 +1264,7 @@
 					"$(PROJECT_DIR)/GeniusWatch/common/CommonTools/MapTool/BaiDuMap",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ba20776d-e323-4edf-b654-f4903fdf787c";
+				PROVISIONING_PROFILE = "2c9bb0c5-b624-42b0-934b-eb0a72bf115c";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
