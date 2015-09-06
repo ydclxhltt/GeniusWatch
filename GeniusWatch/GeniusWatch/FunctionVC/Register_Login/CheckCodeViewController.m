@@ -51,6 +51,15 @@
     // Do any additional setup after loading the view.
 }
 
+#pragma mark 返回按钮事件
+//返回按钮事件
+- (void)backButtonPressed:(UIButton *)sender
+{
+    [self resetTimer];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 #pragma mark 初始化UI
 - (void)initUI
 {
@@ -106,9 +115,9 @@
 #pragma mark 获取验证码点击事件
 - (void)getCodeButtonPressed:(UIButton *)sender
 {
-    sender.enabled = NO;
-    [self getCodeRequest];
+    _getCodeButton.enabled = NO;
     [self createTimer];
+    [self getCodeRequest];
 }
 
 
@@ -126,18 +135,16 @@
 - (void)changeCount:(NSTimer *)timer
 {
     count--;
-    NSString *titleStr = CODE_TIP;
     if (count == 0)
     {
-        [countTimer invalidate];
-        _getCodeButton.enabled = YES;
-        count = 60;
+        [self resetTimer];
     }
     else
     {
-        titleStr = [NSString stringWithFormat:@"%ds",count];
+        NSString *titleStr = [NSString stringWithFormat:@"%ds",count];
+        [_getCodeButton setTitle:titleStr forState:UIControlStateNormal];
     }
-    [_getCodeButton setTitle:titleStr forState:UIControlStateNormal];
+    
 }
 
 //清掉定时器
@@ -196,6 +203,7 @@
     }
     else
     {
+        [self.codeTextField resignFirstResponder];
         [self checkCodeRequest];
     }
 }

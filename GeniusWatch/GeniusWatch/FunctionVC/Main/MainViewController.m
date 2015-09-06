@@ -99,19 +99,25 @@
 //添加地图
 - (void)addMapView
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
-                   ^{
-                       self.mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(MAP_SPACE_X, MAP_SPACE_Y, self.view.frame.size.width - 2 * MAP_SPACE_X, MAP_HEIGHT)];
-                       self.mapView.delegate = self;
-                       self.mapView.mapType = BMKMapTypeStandard;
-                       self.mapView.zoomLevel = 15.0;
-                       self.mapView.showsUserLocation = NO;
-                       dispatch_sync(dispatch_get_main_queue(), ^
-                       {
-                           [self.view insertSubview:self.mapView atIndex:0];
-
-                       });
-                    });
+    self.mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(MAP_SPACE_X, MAP_SPACE_Y, self.view.frame.size.width - 2 * MAP_SPACE_X, MAP_HEIGHT)];
+    self.mapView.delegate = self;
+    self.mapView.mapType = BMKMapTypeStandard;
+    self.mapView.zoomLevel = 15.0;
+    self.mapView.showsUserLocation = NO;
+    [self.view addSubview:self.mapView];
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+//                   ^{
+//                       self.mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(MAP_SPACE_X, MAP_SPACE_Y, self.view.frame.size.width - 2 * MAP_SPACE_X, MAP_HEIGHT)];
+//                       self.mapView.delegate = self;
+//                       self.mapView.mapType = BMKMapTypeStandard;
+//                       self.mapView.zoomLevel = 15.0;
+//                       self.mapView.showsUserLocation = NO;
+//                       dispatch_sync(dispatch_get_main_queue(), ^
+//                       {
+//                           [self.view insertSubview:self.mapView atIndex:0];
+//
+//                       });
+//                    });
     
 }
 
@@ -191,18 +197,41 @@
 //添加
 - (void)addFunctionButtons
 {
-    NSValue *point1 = [NSValue valueWithCGRect:CGRectMake(125.0, 438.0, 123.0, 64.0)];
-    NSValue *point2 = [NSValue valueWithCGRect:CGRectMake(156.0, 495.0, 61.0, 61.0)];
-    NSValue *point3 = [NSValue valueWithCGRect:CGRectMake(125.0, 548.0, 123.0, 64.0)];
-    NSValue *point4 = [NSValue valueWithCGRect:CGRectMake(100.0, 464.0, 64.0, 123.0)];
-    NSValue *point5 = [NSValue valueWithCGRect:CGRectMake(209.0, 464.0, 64.0, 123.0)];
-    NSArray *pointArray = @[point1,point2,point3,point4,point5];
-    NSArray *imageArray = @[@"school",@"homepage_phone",@"homepage_school",@"homepage_location",@"homepage_chat"];
+    float add_y = 43.0  * CURRENT_SCALE;
+    float space_y = 435.0 * CURRENT_SCALE;
+    float space_phone_y = 487.0  * CURRENT_SCALE;
+    
+    UIImage *image = [UIImage imageNamed:@"homepage_location_up"];
+    float vWidth = image.size.width/3 * CURRENT_SCALE;
+    float vHeight = image.size.height/3 * CURRENT_SCALE;
+    float space_vx = (self.view.frame.size.width - 2 * vWidth)/2;
+    float space_vy = space_y + add_y;
+        
+    UIImage *schoolImage = [UIImage imageNamed:@"homepage_school_up"];
+    float hWidth = schoolImage.size.width/3 * CURRENT_SCALE;
+    float hHeight = schoolImage.size.height/3 * CURRENT_SCALE;
+    float space_hx = (self.view.frame.size.width - hWidth)/2;
+    float space_hy = space_y;
+    
+    UIImage *phoneImage = [UIImage imageNamed:@"homepage_phone_up"];
+    float phoneWidth = phoneImage.size.width/3 * CURRENT_SCALE;
+    float phoneHeight = phoneImage.size.height/3 * CURRENT_SCALE;
+    float space_phone_x = (self.view.frame.size.width - phoneWidth)/2;
+    
+    
+    
+    NSValue *point1 = [NSValue valueWithCGRect:CGRectMake(space_hx, space_hy, hWidth, hHeight)];
+    NSValue *point2 = [NSValue valueWithCGRect:CGRectMake(space_vx, space_vy, vWidth, vHeight)];
+    NSValue *point3 = [NSValue valueWithCGRect:CGRectMake(space_vx + vWidth, space_vy, vWidth, vHeight)];
+    NSValue *point4 = [NSValue valueWithCGRect:CGRectMake(space_phone_x, space_phone_y, phoneWidth, phoneHeight)];
+    
+    NSArray *pointArray = @[point1,point2,point3,point4];
+    NSArray *imageArray = @[@"homepage_school",@"homepage_location",@"homepage_chat",@"homepage_phone"];
     
     for (int i = 0; i < [pointArray count]; i++)
     {
         CGRect frame = [pointArray[i] CGRectValue];
-        UIButton *button = [CreateViewTool createButtonWithFrame:CGRectMake(frame.origin.x * CURRENT_SCALE, frame.origin.y * CURRENT_SCALE, frame.size.width * CURRENT_SCALE, frame.size.height * CURRENT_SCALE) buttonImage:imageArray[i] selectorName:@"" tagDelegate:self];
+        UIButton *button = [CreateViewTool createButtonWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height) buttonImage:imageArray[i] selectorName:@"" tagDelegate:self];
         [self.view addSubview:button];
     }
 }

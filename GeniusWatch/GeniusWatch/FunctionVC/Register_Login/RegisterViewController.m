@@ -92,7 +92,10 @@
     else
     {
         //下一步
+        [_phoneNumberTextField resignFirstResponder];
         [self checkPhoneNumber];
+        UIImageView *image = [[UIImageView alloc] init];
+        
         
     }
 }

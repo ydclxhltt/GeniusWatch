@@ -86,6 +86,8 @@
     {
         //设置密码
         //[self dismissViewControllerAnimated:YES completion:^{}];
+        [self.pwdTextField1 resignFirstResponder];
+        [self.pwdTextField2 resignFirstResponder];
         [self registerAndChangePassword];
     }
 }

@@ -68,15 +68,15 @@
 {
     int tag = (int)sender.tag;
     SettingViewController *viewController = [[SettingViewController alloc] init];
-//    switch (tag)
-//    {
-//        case 4:
-//            viewController = [[SettingViewController alloc] init];
-//            break;
-//            
-//        default:
-//            break;
-//    }
+    switch (tag)
+    {
+        case 4:
+            viewController = [[SettingViewController alloc] init];
+            break;
+            
+        default:
+            break;
+    }
     viewController.title = titleArray[tag - 1];
     [self.navigationController pushViewController:viewController animated:YES];
 }
