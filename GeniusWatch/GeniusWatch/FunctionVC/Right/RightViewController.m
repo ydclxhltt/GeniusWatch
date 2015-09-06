@@ -9,9 +9,9 @@
 #import "RightViewController.h"
 #import "SettingViewController.h"
 
-#define SPACE_Y       100.0
+#define SPACE_Y       100.0 * CURRENT_SCALE
 #define TITLE_HEIGHT  20.0
-#define ADD_Y         20.0
+#define ADD_Y         20.0 * CURRENT_SCALE
 
 @interface RightViewController ()
 {

@@ -12,7 +12,7 @@
 
 #define BUTTON_SPACE_X 30.0 * CURRENT_SCALE
 #define BUTTON_SPACE_Y 30.0
-#define BUTTON_HEIGHT  40.0
+//#define BUTTON_HEIGHT  40.0
 
 @interface IndexViewController ()
 

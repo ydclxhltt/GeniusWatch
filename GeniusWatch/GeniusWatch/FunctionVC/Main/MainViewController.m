@@ -10,6 +10,7 @@
 //#import "SliderViewController.h"
 #import "MainSideViewController.h"
 #import "BMapKit.h"
+#import "LocationViewController.h"
 
 //地图
 #define MAP_SPACE_Y         80.0 * CURRENT_SCALE
@@ -231,7 +232,8 @@
     for (int i = 0; i < [pointArray count]; i++)
     {
         CGRect frame = [pointArray[i] CGRectValue];
-        UIButton *button = [CreateViewTool createButtonWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height) buttonImage:imageArray[i] selectorName:@"" tagDelegate:self];
+        UIButton *button = [CreateViewTool createButtonWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height) buttonImage:imageArray[i] selectorName:@"buttonPressed:" tagDelegate:self];
+        button.tag = i + 1;
         [self.view addSubview:button];
     }
 }
@@ -251,6 +253,54 @@
     [[MainSideViewController sharedSliderController] showRightViewController:YES];
 }
 
+#pragma mark 点击功能按钮
+- (void)buttonPressed:(UIButton *)sender
+{
+    int index = (int)sender.tag;
+    
+    UIViewController *viewController = nil;
+    
+    switch (index)
+    {
+        case 1:
+            //守护
+            break;
+        case 2:
+            //定位
+            viewController = [[LocationViewController alloc] init];
+            break;
+        case 3:
+            //微聊
+            break;
+        case 4:
+            //电话
+            [self makeCall];
+            break;
+            
+        default:
+            break;
+    }
+    
+    if (viewController)
+    {
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
+}
+
+#pragma mark 打电话
+- (void)makeCall
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",@"15820790320"]];
+    if ([[UIApplication sharedApplication] canOpenURL:url])
+    {
+        [[UIApplication sharedApplication] openURL:url];
+    }
+    else
+    {
+        //设备不支持
+        [CommonTool addAlertTipWithMessage:@"设备不支持"];
+    }
+}
 
 #pragma mark 开始获取地址
 - (void)getCurrentAddress
