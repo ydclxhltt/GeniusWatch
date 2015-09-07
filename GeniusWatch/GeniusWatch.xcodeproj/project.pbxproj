@@ -12,7 +12,12 @@
 		776D54021B96E6A800D1DD62 /* homepage_chat_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 776D53FC1B96E6A800D1DD62 /* homepage_chat_up.png */; };
 		776D54041B96E6A800D1DD62 /* homepage_location_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 776D53FE1B96E6A800D1DD62 /* homepage_location_up.png */; };
 		7795517F1B9C207600F587BD /* homepage_school_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 7795517E1B9C207600F587BD /* homepage_school_up.png */; };
-		77C5F4471B9C2C97009996BC /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C5F4461B9C2C97009996BC /* LocationViewController.m */; };
+		77A754FC1B9D566E006F9B83 /* BasicMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A754FB1B9D566E006F9B83 /* BasicMapViewController.m */; };
+		77A7550C1B9D653F006F9B83 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A755051B9D653F006F9B83 /* LocationViewController.m */; };
+		77A7550D1B9D653F006F9B83 /* SchoolGuardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A755081B9D653F006F9B83 /* SchoolGuardViewController.m */; };
+		77A7550E1B9D653F006F9B83 /* SetAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A7550A1B9D653F006F9B83 /* SetAddressViewController.m */; };
+		77A755111B9D6CA2006F9B83 /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A755101B9D6CA2006F9B83 /* AddressViewController.m */; };
+		77A755141B9D988E006F9B83 /* WeChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A755131B9D988E006F9B83 /* WeChatViewController.m */; };
 		77C5F44A1B9C3874009996BC /* location_map_model_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 77C5F4481B9C3874009996BC /* location_map_model_down.png */; };
 		77C5F44B1B9C3874009996BC /* location_map_model_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 77C5F4491B9C3874009996BC /* location_map_model_up.png */; };
 		77D354161B87210D0055B0B7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D354151B87210D0055B0B7 /* main.m */; };
@@ -137,8 +142,18 @@
 		776D53FC1B96E6A800D1DD62 /* homepage_chat_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homepage_chat_up.png; sourceTree = "<group>"; };
 		776D53FE1B96E6A800D1DD62 /* homepage_location_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homepage_location_up.png; sourceTree = "<group>"; };
 		7795517E1B9C207600F587BD /* homepage_school_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homepage_school_up.png; sourceTree = "<group>"; };
-		77C5F4451B9C2C97009996BC /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
-		77C5F4461B9C2C97009996BC /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
+		77A754FA1B9D566E006F9B83 /* BasicMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicMapViewController.h; sourceTree = "<group>"; };
+		77A754FB1B9D566E006F9B83 /* BasicMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicMapViewController.m; sourceTree = "<group>"; };
+		77A755041B9D653F006F9B83 /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
+		77A755051B9D653F006F9B83 /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
+		77A755071B9D653F006F9B83 /* SchoolGuardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolGuardViewController.h; sourceTree = "<group>"; };
+		77A755081B9D653F006F9B83 /* SchoolGuardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolGuardViewController.m; sourceTree = "<group>"; };
+		77A755091B9D653F006F9B83 /* SetAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetAddressViewController.h; sourceTree = "<group>"; };
+		77A7550A1B9D653F006F9B83 /* SetAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetAddressViewController.m; sourceTree = "<group>"; };
+		77A7550F1B9D6CA2006F9B83 /* AddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressViewController.h; sourceTree = "<group>"; };
+		77A755101B9D6CA2006F9B83 /* AddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressViewController.m; sourceTree = "<group>"; };
+		77A755121B9D988E006F9B83 /* WeChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatViewController.h; sourceTree = "<group>"; };
+		77A755131B9D988E006F9B83 /* WeChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeChatViewController.m; sourceTree = "<group>"; };
 		77C5F4481B9C3874009996BC /* location_map_model_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location_map_model_down.png; sourceTree = "<group>"; };
 		77C5F4491B9C3874009996BC /* location_map_model_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location_map_model_up.png; sourceTree = "<group>"; };
 		77D354101B87210C0055B0B7 /* GeniusWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeniusWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -395,6 +410,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		77A755031B9D653F006F9B83 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				77A755041B9D653F006F9B83 /* LocationViewController.h */,
+				77A755051B9D653F006F9B83 /* LocationViewController.m */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		77A755061B9D653F006F9B83 /* SchoolGuard */ = {
+			isa = PBXGroup;
+			children = (
+				77A755071B9D653F006F9B83 /* SchoolGuardViewController.h */,
+				77A755081B9D653F006F9B83 /* SchoolGuardViewController.m */,
+				77A755091B9D653F006F9B83 /* SetAddressViewController.h */,
+				77A7550A1B9D653F006F9B83 /* SetAddressViewController.m */,
+				77A7550F1B9D6CA2006F9B83 /* AddressViewController.h */,
+				77A755101B9D6CA2006F9B83 /* AddressViewController.m */,
+			);
+			path = SchoolGuard;
+			sourceTree = "<group>";
+		};
+		77A7550B1B9D653F006F9B83 /* WeChat */ = {
+			isa = PBXGroup;
+			children = (
+				77A755121B9D988E006F9B83 /* WeChatViewController.h */,
+				77A755131B9D988E006F9B83 /* WeChatViewController.m */,
+			);
+			path = WeChat;
+			sourceTree = "<group>";
+		};
 		77D354071B87210C0055B0B7 = {
 			isa = PBXGroup;
 			children = (
@@ -567,8 +613,11 @@
 			children = (
 				77D3544C1B8725730055B0B7 /* MainViewController.h */,
 				77D3544D1B8725730055B0B7 /* MainViewController.m */,
-				77C5F4451B9C2C97009996BC /* LocationViewController.h */,
-				77C5F4461B9C2C97009996BC /* LocationViewController.m */,
+				77A754FA1B9D566E006F9B83 /* BasicMapViewController.h */,
+				77A754FB1B9D566E006F9B83 /* BasicMapViewController.m */,
+				77A755031B9D653F006F9B83 /* Location */,
+				77A755061B9D653F006F9B83 /* SchoolGuard */,
+				77A7550B1B9D653F006F9B83 /* WeChat */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1070,7 +1119,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEB7E9DF1B9A090400A6A479 /* AddWatchViewController.m in Sources */,
+				77A7550E1B9D653F006F9B83 /* SetAddressViewController.m in Sources */,
 				CEA606F31B8897E900C4DADE /* AFHTTPRequestOperation.m in Sources */,
+				77A7550D1B9D653F006F9B83 /* SchoolGuardViewController.m in Sources */,
 				77D354191B87210D0055B0B7 /* AppDelegate.m in Sources */,
 				CEA606E01B8897E900C4DADE /* CommonTool.m in Sources */,
 				CEA606E11B8897E900C4DADE /* CreateViewTool.m in Sources */,
@@ -1078,6 +1129,7 @@
 				CEA606EA1B8897E900C4DADE /* SDWebImagePrefetcher.m in Sources */,
 				CEA607041B8897E900C4DADE /* UIWebView+AFNetworking.m in Sources */,
 				CEA606E91B8897E900C4DADE /* SDWebImageManager.m in Sources */,
+				77A755141B9D988E006F9B83 /* WeChatViewController.m in Sources */,
 				CEDB97C41B9A2D2C00A04AE5 /* SettingViewController.m in Sources */,
 				77D3544E1B8725730055B0B7 /* MainViewController.m in Sources */,
 				CE300BBA1B983506003D71AF /* SVProgressHUD.m in Sources */,
@@ -1094,6 +1146,7 @@
 				CEB7E9E61B9A176900A6A479 /* AutoAddWatchViewController.m in Sources */,
 				CEA606EF1B8897E900C4DADE /* THProgressView.m in Sources */,
 				CEA606E51B8897E900C4DADE /* SDWebImageCompat.m in Sources */,
+				77A755111B9D6CA2006F9B83 /* AddressViewController.m in Sources */,
 				CEFD2F9A1B95F0A8007587CD /* LeftTableViewCell.m in Sources */,
 				CEA607021B8897E900C4DADE /* UIProgressView+AFNetworking.m in Sources */,
 				CEA606F01B8897E900C4DADE /* UIImageView+LK.m in Sources */,
@@ -1106,6 +1159,7 @@
 				CEA606F71B8897E900C4DADE /* AFSecurityPolicy.m in Sources */,
 				CEA606FF1B8897E900C4DADE /* UIAlertView+AFNetworking.m in Sources */,
 				CEA607211B88C4C900C4DADE /* IndexViewController.m in Sources */,
+				77A7550C1B9D653F006F9B83 /* LocationViewController.m in Sources */,
 				CEA606E71B8897E900C4DADE /* SDWebImageDownloader.m in Sources */,
 				CEA606EC1B8897E900C4DADE /* UIImage+GIF.m in Sources */,
 				CEA606F61B8897E900C4DADE /* AFNetworkReachabilityManager.m in Sources */,
@@ -1120,7 +1174,7 @@
 				CEA606EB1B8897E900C4DADE /* UIButton+WebCache.m in Sources */,
 				CEA606E31B8897E900C4DADE /* NSData+ImageContentType.m in Sources */,
 				CEA607051B8897E900C4DADE /* UpLoadPhotoTool.m in Sources */,
-				77C5F4471B9C2C97009996BC /* LocationViewController.m in Sources */,
+				77A754FC1B9D566E006F9B83 /* BasicMapViewController.m in Sources */,
 				CEA607341B88F82700C4DADE /* CheckCodeViewController.m in Sources */,
 				CEA606EE1B8897E900C4DADE /* UIImageView+WebCache.m in Sources */,
 				CEA6072B1B88DAE000C4DADE /* LoginViewController.m in Sources */,

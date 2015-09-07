@@ -11,6 +11,7 @@
 #import "MainSideViewController.h"
 #import "BMapKit.h"
 #import "LocationViewController.h"
+#import "SchoolGuardViewController.h"
 
 //地图
 #define MAP_SPACE_Y         80.0 * CURRENT_SCALE
@@ -264,6 +265,7 @@
     {
         case 1:
             //守护
+            viewController = [[SchoolGuardViewController alloc] init];
             break;
         case 2:
             //定位
