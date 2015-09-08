@@ -54,7 +54,7 @@
     if(LeftItem == type)
         //self.navigationItem.leftBarButtonItems = @[negativeSpacer,barItem];
         self.navigationItem.leftBarButtonItems = @[barItem];
-    else if (rightItem == type)
+    else if (RightItem == type)
         self.navigationItem.rightBarButtonItems = @[barItem];
 }
 
@@ -85,7 +85,7 @@
     if(LeftItem == type)
         //self.navigationItem.leftBarButtonItems = @[negativeSpacer,barItem];
         self.navigationItem.leftBarButtonItems = @[barItem];
-    else if (rightItem == type)
+    else if (RightItem == type)
         self.navigationItem.rightBarButtonItems = @[barItem];
 }
 

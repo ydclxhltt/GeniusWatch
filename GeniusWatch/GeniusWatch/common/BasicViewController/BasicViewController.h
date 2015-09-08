@@ -14,7 +14,7 @@
 typedef enum : NSUInteger
 {
     LeftItem,
-    rightItem,
+    RightItem,
 } NavItemType;
 
 typedef enum : NSUInteger {
