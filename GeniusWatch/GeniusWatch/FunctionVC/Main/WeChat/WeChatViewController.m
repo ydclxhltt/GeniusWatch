@@ -7,6 +7,7 @@
 //
 
 #import "WeChatViewController.h"
+#import "ChatMemberListViewController.h"
 #import "UUInputFunctionView.h"
 #import "MJRefresh.h"
 #import "UUMessageCell.h"
@@ -114,7 +115,8 @@
 #pragma mark 通讯录按钮响应事件
 - (void)memberButtonPressed:(UIButton *)sender
 {
-    
+    ChatMemberListViewController *chatMemberListViewController = [[ChatMemberListViewController alloc] init];
+    [self.navigationController pushViewController:chatMemberListViewController animated:YES];
 }
 
 
