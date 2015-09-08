@@ -12,6 +12,7 @@
 #import "BMapKit.h"
 #import "LocationViewController.h"
 #import "SchoolGuardViewController.h"
+#import "WeChatViewController.h"
 
 //地图
 #define MAP_SPACE_Y         80.0 * CURRENT_SCALE
@@ -273,6 +274,7 @@
             break;
         case 3:
             //微聊
+            viewController = [[WeChatViewController alloc] init];
             break;
         case 4:
             //电话

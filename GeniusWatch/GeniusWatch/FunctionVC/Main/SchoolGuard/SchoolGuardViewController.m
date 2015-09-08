@@ -20,7 +20,7 @@
     [super viewDidLoad];
     self.title = @"校园守护";
     [self addBackItem];
-    [self setNavBarItemWithTitle:@"设置" navItemType:rightItem selectorName:@"settingGuardInfo:"];
+    [self setNavBarItemWithTitle:@"设置" navItemType:RightItem selectorName:@"settingGuardInfo:"];
     // Do any additional setup after loading the view.
 }
 
