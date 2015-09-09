@@ -12,6 +12,7 @@
 		776D54021B96E6A800D1DD62 /* homepage_chat_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 776D53FC1B96E6A800D1DD62 /* homepage_chat_up.png */; };
 		776D54041B96E6A800D1DD62 /* homepage_location_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 776D53FE1B96E6A800D1DD62 /* homepage_location_up.png */; };
 		7795517F1B9C207600F587BD /* homepage_school_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 7795517E1B9C207600F587BD /* homepage_school_up.png */; };
+		779CAD611BA01C0C00A143FF /* register_bg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 779CAD601BA01C0C00A143FF /* register_bg1.png */; };
 		77A754FC1B9D566E006F9B83 /* BasicMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A754FB1B9D566E006F9B83 /* BasicMapViewController.m */; };
 		77A7550C1B9D653F006F9B83 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A755051B9D653F006F9B83 /* LocationViewController.m */; };
 		77A7550D1B9D653F006F9B83 /* SchoolGuardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A755081B9D653F006F9B83 /* SchoolGuardViewController.m */; };
@@ -180,6 +181,7 @@
 		776D53FC1B96E6A800D1DD62 /* homepage_chat_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homepage_chat_up.png; sourceTree = "<group>"; };
 		776D53FE1B96E6A800D1DD62 /* homepage_location_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homepage_location_up.png; sourceTree = "<group>"; };
 		7795517E1B9C207600F587BD /* homepage_school_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homepage_school_up.png; sourceTree = "<group>"; };
+		779CAD601BA01C0C00A143FF /* register_bg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = register_bg1.png; sourceTree = "<group>"; };
 		77A754FA1B9D566E006F9B83 /* BasicMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicMapViewController.h; sourceTree = "<group>"; };
 		77A754FB1B9D566E006F9B83 /* BasicMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicMapViewController.m; sourceTree = "<group>"; };
 		77A755041B9D653F006F9B83 /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
@@ -1136,6 +1138,7 @@
 		CEA6071B1B88C48A00C4DADE /* register_login */ = {
 			isa = PBXGroup;
 			children = (
+				779CAD601BA01C0C00A143FF /* register_bg1.png */,
 				CEC3D39B1B9AE3A3000E7126 /* land_navigation.png */,
 				CEB7E9E01B9A0B1000A6A479 /* line.png */,
 				CEB7E9E11B9A0B1000A6A479 /* pick_bg.png */,
@@ -1287,6 +1290,7 @@
 				CE2B708F1B9C6A3E00075911 /* location_zoom_amplification_up.png in Resources */,
 				CEB7E9E21B9A0B1000A6A479 /* line.png in Resources */,
 				CE49EA571B96256D005C00E4 /* set_feedback_up.png in Resources */,
+				779CAD611BA01C0C00A143FF /* register_bg1.png in Resources */,
 				CE2B708C1B9C6A3E00075911 /* location_location_down.png in Resources */,
 				CE300BB81B983506003D71AF /* success@2x.png in Resources */,
 				77C5F44B1B9C3874009996BC /* location_map_model_up.png in Resources */,
