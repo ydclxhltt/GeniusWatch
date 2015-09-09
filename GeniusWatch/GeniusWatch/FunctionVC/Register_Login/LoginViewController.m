@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
+#import "MainSideViewController.h"
 
 #define SPACE_Y             NAVBAR_HEIGHT + 30.0
 #define ADD_Y               10.0
@@ -185,7 +186,17 @@
 //进入主界面
 - (void)gotoMainView
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSucess" object:nil];
+    if ([GeniusWatchApplication shareApplication].isLaunchLogin)
+    {
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSucess" object:nil];
+    }
+    else
+    {
+        [GeniusWatchApplication shareApplication].isLaunchLogin = YES;
+        [[MainSideViewController sharedSliderController] hideSideViewController:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+   
 }
 
 

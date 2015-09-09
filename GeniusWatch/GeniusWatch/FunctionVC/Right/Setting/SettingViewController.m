@@ -7,6 +7,7 @@
 //
 
 #import "SettingViewController.h"
+#import "LoginViewController.h"
 
 #define ROW_HEIGHT      50.0
 #define HEADER_HEIGHT   2.0
@@ -58,6 +59,22 @@
     [self.view addSubview:exitButton];
     
 }
+
+#pragma mark 退出登录相应时间
+- (void)registerButtonPressed:(UIButton *)sender
+{
+    [GeniusWatchApplication shareApplication].isLaunchLogin = NO;
+    
+    LoginViewController *loginViewController = [[LoginViewController alloc] init];
+    loginViewController.isShowBackItem = NO;
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+    [self presentViewController:nav animated:YES completion:^
+    {
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }];
+    
+}
+
 
 #pragma mark UITableViewDelegate
 

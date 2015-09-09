@@ -67,7 +67,7 @@
 - (void)buttonPressed:(UIButton *)sender
 {
     int tag = (int)sender.tag;
-    SettingViewController *viewController = [[SettingViewController alloc] init];
+    SettingViewController *viewController;
     switch (tag)
     {
         case 4:
@@ -77,8 +77,13 @@
         default:
             break;
     }
-    viewController.title = titleArray[tag - 1];
-    [self.navigationController pushViewController:viewController animated:YES];
+    
+    if (viewController)
+    {
+        viewController.title = titleArray[tag - 1];
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
+ 
 }
 
 

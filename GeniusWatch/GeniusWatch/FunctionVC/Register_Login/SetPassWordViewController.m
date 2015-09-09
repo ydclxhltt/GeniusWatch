@@ -9,9 +9,10 @@
 #import "SetPassWordViewController.h"
 #import "LoginViewController.h"
 
-#define TEXTFIELD_Y         NAVBAR_HEIGHT + 15.0
+#define TEXTFIELD_Y         NAVBAR_HEIGHT + 30.0
 #define ADD_Y               10.0
 #define SPACE_X             20.0 * CURRENT_SCALE
+#define BUTTON_ADD_Y        40.0
 
 #define LOADING_TIP         @"正在提交..."
 #define LOADING_FAIL        @"提交失败"
@@ -46,31 +47,31 @@
 - (void)addTextFields
 {
     start_y = TEXTFIELD_Y;
-    _pwdTextField1 = [CreateViewTool createTextFieldWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 2 * SPACE_X, TEXTFIELD_HEIGHT) textColor:[UIColor blackColor] textFont:FONT(15.0) placeholderText:@"密码"];
-    [CommonTool setViewLayer:_pwdTextField1 withLayerColor:[UIColor lightGrayColor] bordWidth:.5];
-    [CommonTool clipView:_pwdTextField1 withCornerRadius:15.0];
+    _pwdTextField1 = [CreateViewTool createTextFieldWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 2 * SPACE_X, TEXTFIELD_HEIGHT) textColor:[UIColor blackColor] textFont:TEXTFIELD_FONT placeholderText:@"密码"];
+    [CommonTool setViewLayer:_pwdTextField1 withLayerColor:TEXTFIELD_COLOR bordWidth:.5];
+    [CommonTool clipView:_pwdTextField1 withCornerRadius:TEXTFIELD_RADIUS];
     _pwdTextField1.secureTextEntry = YES;
     _pwdTextField1.delegate = self;
     [self.view addSubview:_pwdTextField1];
     
     start_y += _pwdTextField1.frame.size.height + ADD_Y;
     
-    _pwdTextField2 = [CreateViewTool createTextFieldWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 2 * SPACE_X, TEXTFIELD_HEIGHT) textColor:[UIColor blackColor] textFont:FONT(15.0) placeholderText:@"确认密码"];
-    [CommonTool setViewLayer:_pwdTextField2 withLayerColor:[UIColor lightGrayColor] bordWidth:.5];
-    [CommonTool clipView:_pwdTextField2 withCornerRadius:15.0];
+    _pwdTextField2 = [CreateViewTool createTextFieldWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 2 * SPACE_X, TEXTFIELD_HEIGHT) textColor:[UIColor blackColor] textFont:TEXTFIELD_FONT placeholderText:@"确认密码"];
+    [CommonTool setViewLayer:_pwdTextField2 withLayerColor:TEXTFIELD_COLOR bordWidth:.5];
+    [CommonTool clipView:_pwdTextField2 withCornerRadius:TEXTFIELD_RADIUS];
     _pwdTextField2.secureTextEntry = YES;
     _pwdTextField2.delegate = self;
     [self.view addSubview:_pwdTextField2];
     
-    start_y += _pwdTextField2.frame.size.height + 2 * ADD_Y;
+    start_y += _pwdTextField2.frame.size.height + BUTTON_ADD_Y;
 }
 
 //添加提交按钮
 - (void)addSureButton
 {
-    UIButton *sureButton = [CreateViewTool createButtonWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 2 * SPACE_X, BUTTON_HEIGHT) buttonTitle:@"确定" titleColor:[UIColor whiteColor] normalBackgroundColor:APP_MAIN_COLOR highlightedBackgroundColor:[UIColor grayColor] selectorName:@"sureButtonPressed:" tagDelegate:self];
-    [CommonTool setViewLayer:sureButton withLayerColor:[UIColor whiteColor] bordWidth:1.0];
-    [CommonTool clipView:sureButton withCornerRadius:15.0];
+    UIButton *sureButton = [CreateViewTool createButtonWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 2 * SPACE_X, BUTTON_HEIGHT) buttonTitle:@"确定" titleColor:BUTTON_TITLE_COLOR normalBackgroundColor:BUTTON_N_COLOR highlightedBackgroundColor:BUTTON_H_COLOR selectorName:@"sureButtonPressed:" tagDelegate:self];
+    sureButton.titleLabel.font = BUTTON_FONT;
+    [CommonTool clipView:sureButton withCornerRadius:BUTTON_RADIUS];
     [self.view addSubview:sureButton];
     
 }

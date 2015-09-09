@@ -10,7 +10,7 @@
 #import "SetPassWordViewController.h"
 
 #define TIP_STRING          @"验证码已发送至手机号:\n"
-#define SPACE_Y            NAVBAR_HEIGHT + 30.0
+#define SPACE_Y             NAVBAR_HEIGHT + 30.0
 #define TIPLABEL_HEIGHT     40.0
 #define ADD_Y               40.0
 #define SPACE_X             20.0 * CURRENT_SCALE
@@ -100,7 +100,7 @@
 {
     float start_x = _codeTextField.frame.origin.x + _codeTextField.frame.size.width + ADD_X;
     _getCodeButton = [CreateViewTool createButtonWithFrame:CGRectMake(start_x, _codeTextField.frame.origin.y, self.view.frame.size.width - start_x - SPACE_X, _codeTextField.frame.size.height) buttonTitle:CODE_TIP titleColor:BUTTON_TITLE_COLOR normalBackgroundColor:BUTTON_N_COLOR highlightedBackgroundColor:BUTTON_H_COLOR selectorName:@"getCodeButtonPressed:" tagDelegate:self];
-    _getCodeButton.titleLabel.font = FONT(14.0);
+    _getCodeButton.titleLabel.font = FONT(12.0);
     [CommonTool clipView:_getCodeButton withCornerRadius:BUTTON_RADIUS];
     [self.view addSubview:_getCodeButton];
     
@@ -134,16 +134,16 @@
 - (void)changeCount:(NSTimer *)timer
 {
     count--;
+    NSString *titleStr = CODE_TIP;
     if (count == 0)
     {
         [self resetTimer];
     }
     else
     {
-        NSString *titleStr = [NSString stringWithFormat:@"%@ (%d) s",CODE_TIP1,count];
-        [_getCodeButton setTitle:titleStr forState:UIControlStateNormal];
+        titleStr = [NSString stringWithFormat:@"%@(%ds)",CODE_TIP1,count];
     }
-    
+    [_getCodeButton setTitle:titleStr forState:UIControlStateNormal];
 }
 
 //清掉定时器
@@ -196,14 +196,15 @@
 {
     NSString *codeStr = self.codeTextField.text;
     codeStr = (codeStr) ? codeStr : @"";
-    if (codeStr.length != 6)
+    if (codeStr.length == 0)
     {
         [CommonTool addAlertTipWithMessage:@"请输入正确的验证码"];
     }
     else
     {
         [self.codeTextField resignFirstResponder];
-        [self checkCodeRequest];
+        //[self checkCodeRequest];
+        [self gotoSetPassword];
     }
 }
 
@@ -224,15 +225,15 @@
                              NSString *errorCode = dic[@"errorCode"];
                              NSString *description = dic[@"description"];
                              description = (description) ? description : CODE_FAIL;
-                             //if ([@"0" isEqualToString:errorCode])
+                             if ([@"0" isEqualToString:errorCode])
                              {
                                  [SVProgressHUD showSuccessWithStatus:CODE_SUCESS];
                                  [weakSelf gotoSetPassword];
                              }
-                             //else
-                             //{
-                             //    [SVProgressHUD showErrorWithStatus:description];
-                            // }
+                             else
+                             {
+                                 [SVProgressHUD showErrorWithStatus:description];
+                             }
                          }
                          requestFail:^(AFHTTPRequestOperation *operation, NSError *error)
                          {
