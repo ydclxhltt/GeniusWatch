@@ -27,8 +27,10 @@
 #import "RequestTool.h"
 #import "SVProgressHUD.h"
 #import "ACMacros.h"
+#import "GeniusWatchApplication.h"
 #endif
 
 //#define NSLog(...){}
+
 
 #endif
