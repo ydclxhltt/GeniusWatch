@@ -97,6 +97,7 @@
 		CE49EA591B96256D005C00E4 /* set_infomation_up.png in Resources */ = {isa = PBXBuildFile; fileRef = CE49EA4F1B96256D005C00E4 /* set_infomation_up.png */; };
 		CE49EA5B1B96256D005C00E4 /* set_linkman_up.png in Resources */ = {isa = PBXBuildFile; fileRef = CE49EA511B96256D005C00E4 /* set_linkman_up.png */; };
 		CE49EA5D1B96256D005C00E4 /* set_set_up.png in Resources */ = {isa = PBXBuildFile; fileRef = CE49EA531B96256D005C00E4 /* set_set_up.png */; };
+		CE72169C1BA0948200044A9D /* GeniusWatchApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CE72169B1BA0948200044A9D /* GeniusWatchApplication.m */; };
 		CE8356E91B9A3777005B2313 /* app_set_after_app.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8356E51B9A3777005B2313 /* app_set_after_app.png */; };
 		CE8356EA1B9A3777005B2313 /* app_set_after_eliminate.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8356E61B9A3777005B2313 /* app_set_after_eliminate.png */; };
 		CE8356EB1B9A3777005B2313 /* app_set_after_information.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8356E71B9A3777005B2313 /* app_set_after_information.png */; };
@@ -302,6 +303,8 @@
 		CE49EA4F1B96256D005C00E4 /* set_infomation_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = set_infomation_up.png; sourceTree = "<group>"; };
 		CE49EA511B96256D005C00E4 /* set_linkman_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = set_linkman_up.png; sourceTree = "<group>"; };
 		CE49EA531B96256D005C00E4 /* set_set_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = set_set_up.png; sourceTree = "<group>"; };
+		CE72169A1BA0948200044A9D /* GeniusWatchApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeniusWatchApplication.h; sourceTree = "<group>"; };
+		CE72169B1BA0948200044A9D /* GeniusWatchApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusWatchApplication.m; sourceTree = "<group>"; };
 		CE8356E51B9A3777005B2313 /* app_set_after_app.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_set_after_app.png; sourceTree = "<group>"; };
 		CE8356E61B9A3777005B2313 /* app_set_after_eliminate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_set_after_eliminate.png; sourceTree = "<group>"; };
 		CE8356E71B9A3777005B2313 /* app_set_after_information.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_set_after_information.png; sourceTree = "<group>"; };
@@ -877,6 +880,8 @@
 				CEA6064D1B8897E900C4DADE /* CommonTool.m */,
 				CEA6064E1B8897E900C4DADE /* CreateViewTool.h */,
 				CEA6064F1B8897E900C4DADE /* CreateViewTool.m */,
+				CE72169A1BA0948200044A9D /* GeniusWatchApplication.h */,
+				CE72169B1BA0948200044A9D /* GeniusWatchApplication.m */,
 				CEA606501B8897E900C4DADE /* DownLoadImageTool */,
 				CEA606731B8897E900C4DADE /* MapTool */,
 				CEA606B51B8897E900C4DADE /* RequestTool */,
@@ -1381,6 +1386,7 @@
 				CEA606E51B8897E900C4DADE /* SDWebImageCompat.m in Sources */,
 				77A755111B9D6CA2006F9B83 /* AddressViewController.m in Sources */,
 				CEFD2F9A1B95F0A8007587CD /* LeftTableViewCell.m in Sources */,
+				CE72169C1BA0948200044A9D /* GeniusWatchApplication.m in Sources */,
 				77A7D0951B9ED686004C621A /* UUMessageCell.m in Sources */,
 				CEA607021B8897E900C4DADE /* UIProgressView+AFNetworking.m in Sources */,
 				77A7D07C1B9ED686004C621A /* MJRefreshFooterView.m in Sources */,
