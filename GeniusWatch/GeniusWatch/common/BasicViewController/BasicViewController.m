@@ -17,11 +17,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:NO];
-    //[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"land_navigation"] forBarMetrics:UIBarMetricsDefault];
-    //[self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{ NSForegroundColorAttributeName:APP_MAIN_COLOR}];
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self.navigationController setNavigationBarHidden:NO];
+    
+    
+    UIImageView *imageView = [CreateViewTool createImageViewWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height - 1.0, self.navigationController.navigationBar.frame.size.width, 1.0) placeholderImage:nil];
+    imageView.backgroundColor = APP_MAIN_COLOR;
+    [self.navigationController.navigationBar addSubview:imageView];
+    
+    //[self.navigationController.navigationBar setBackgroundImage:[CommonTool imageWithColor:APP_MAIN_COLOR] forBarMetrics:UIBarMetricsDefault];
+    //[self.navigationController.navigationBar setShadowImage:[CommonTool imageWithColor:[UIColor redColor]]];
+    //[self.navigationController.navigationBar setTitleTextAttributes:@{ NSForegroundColorAttributeName:APP_MAIN_COLOR}];
     //self.navigationController.navigationBar.translucent = YES;
     //self.automaticallyAdjustsScrollViewInsets = NO;
     // Do any additional setup after loading the view.

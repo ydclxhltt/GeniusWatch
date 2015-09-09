@@ -22,7 +22,7 @@
 #define BOLD_FONT(f)            [UIFont boldSystemFontOfSize:f]
 
 //主色调
-#define APP_MAIN_COLOR          RGB(231.0,151.0,62.0)
+#define APP_MAIN_COLOR          RGB(239.0,147.0,41.0)
 
 //导航条高度
 #define NAVBAR_HEIGHT           64.0

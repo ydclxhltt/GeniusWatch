@@ -10,15 +10,15 @@
 #import "SetPassWordViewController.h"
 
 #define TIP_STRING          @"验证码已发送至手机号:\n"
-#define TIPLABEL_SPAXCE_Y   NAVBAR_HEIGHT + 15.0
+#define SPACE_Y            NAVBAR_HEIGHT + 30.0
 #define TIPLABEL_HEIGHT     40.0
-#define ADD_Y               15.0
+#define ADD_Y               40.0
 #define SPACE_X             20.0 * CURRENT_SCALE
 #define ADD_X               10.0 * CURRENT_SCALE
 #define CODE_BUTTON_WIDTH   80.0
 
 #define CODE_TIP            @"获取验证码"
-
+#define CODE_TIP1           @"重新获取"
 #define LOADING_TIP         @"正在发送..."
 #define LOADING_SUCESS      @"发送成功"
 #define LOADING_FAIL        @"发送失败"
@@ -63,20 +63,21 @@
 #pragma mark 初始化UI
 - (void)initUI
 {
-    [self addTipLabel];
+    start_y = SPACE_Y;
     [self addTextField];
+    [self addTipLabel];
     [self addButtons];
 }
 
 //添加提示文字
 - (void)addTipLabel
 {
-    UILabel *tipLabel = [CreateViewTool createLabelWithFrame:CGRectMake(0, TIPLABEL_SPAXCE_Y, self.view.frame.size.width, TIPLABEL_HEIGHT) textString:[TIP_STRING stringByAppendingString:self.phoneNumberStr] textColor:[UIColor blackColor] textFont:FONT(16.0)];
-    tipLabel.numberOfLines = 2;
-    tipLabel.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:tipLabel];
-    
-    start_y = tipLabel.frame.origin.y + tipLabel.frame.size.height + ADD_Y;
+//    UILabel *tipLabel = [CreateViewTool createLabelWithFrame:CGRectMake(0, TIPLABEL_SPAXCE_Y, self.view.frame.size.width, TIPLABEL_HEIGHT) textString:[TIP_STRING stringByAppendingString:self.phoneNumberStr] textColor:[UIColor blackColor] textFont:FONT(16.0)];
+//    tipLabel.numberOfLines = 2;
+//    tipLabel.textAlignment = NSTextAlignmentCenter;
+//    [self.view addSubview:tipLabel];
+//    
+//    start_y = tipLabel.frame.origin.y + tipLabel.frame.size.height + ADD_Y;
 }
 
 //添加输入框
@@ -85,8 +86,8 @@
     
     _codeTextField = [CreateViewTool createTextFieldWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 3 * SPACE_X - CODE_BUTTON_WIDTH, TEXTFIELD_HEIGHT) textColor:[UIColor blackColor] textFont:FONT(15.0) placeholderText:@"您的验证码"];
     //_phoneNumberTextField.borderStyle = UITextBorderStyleLine;
-    [CommonTool setViewLayer:_codeTextField withLayerColor:[UIColor lightGrayColor] bordWidth:.5];
-    [CommonTool clipView:_codeTextField withCornerRadius:15.0];
+    [CommonTool setViewLayer:_codeTextField withLayerColor:TEXTFIELD_COLOR bordWidth:.5];
+    [CommonTool clipView:_codeTextField withCornerRadius:TEXTFIELD_RADIUS];
     _codeTextField.keyboardType = UIKeyboardTypeNumberPad;
     _codeTextField.delegate = self;
     [self.view addSubview:_codeTextField];
@@ -98,16 +99,14 @@
 - (void)addButtons
 {
     float start_x = _codeTextField.frame.origin.x + _codeTextField.frame.size.width + ADD_X;
-    _getCodeButton = [CreateViewTool createButtonWithFrame:CGRectMake(start_x, _codeTextField.frame.origin.y, self.view.frame.size.width - start_x - SPACE_X, _codeTextField.frame.size.height) buttonTitle:CODE_TIP titleColor:APP_MAIN_COLOR normalBackgroundColor:[UIColor clearColor] highlightedBackgroundColor:[UIColor lightGrayColor] selectorName:@"getCodeButtonPressed:" tagDelegate:self];
+    _getCodeButton = [CreateViewTool createButtonWithFrame:CGRectMake(start_x, _codeTextField.frame.origin.y, self.view.frame.size.width - start_x - SPACE_X, _codeTextField.frame.size.height) buttonTitle:CODE_TIP titleColor:BUTTON_TITLE_COLOR normalBackgroundColor:BUTTON_N_COLOR highlightedBackgroundColor:BUTTON_H_COLOR selectorName:@"getCodeButtonPressed:" tagDelegate:self];
     _getCodeButton.titleLabel.font = FONT(14.0);
-    [CommonTool setViewLayer:_getCodeButton withLayerColor:[UIColor lightGrayColor] bordWidth:.5];
-    [CommonTool clipView:_getCodeButton withCornerRadius:10.0];
+    [CommonTool clipView:_getCodeButton withCornerRadius:BUTTON_RADIUS];
     [self.view addSubview:_getCodeButton];
     
     
-    UIButton *nextButton = [CreateViewTool createButtonWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 2 * SPACE_X, BUTTON_HEIGHT) buttonTitle:@"下一步" titleColor:[UIColor whiteColor] normalBackgroundColor:APP_MAIN_COLOR highlightedBackgroundColor:[UIColor grayColor] selectorName:@"nextButtonPressed:" tagDelegate:self];
-    [CommonTool setViewLayer:nextButton withLayerColor:[UIColor lightGrayColor] bordWidth:.5];
-    [CommonTool clipView:nextButton withCornerRadius:15.0];
+    UIButton *nextButton = [CreateViewTool createButtonWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 2 * SPACE_X, BUTTON_HEIGHT) buttonTitle:@"下一步" titleColor:BUTTON_TITLE_COLOR normalBackgroundColor:BUTTON_N_COLOR highlightedBackgroundColor:BUTTON_H_COLOR selectorName:@"nextButtonPressed:" tagDelegate:self];
+    [CommonTool clipView:nextButton withCornerRadius:BUTTON_RADIUS];
     [self.view addSubview:nextButton];
 }
 
@@ -141,7 +140,7 @@
     }
     else
     {
-        NSString *titleStr = [NSString stringWithFormat:@"%ds",count];
+        NSString *titleStr = [NSString stringWithFormat:@"%@ (%d) s",CODE_TIP1,count];
         [_getCodeButton setTitle:titleStr forState:UIControlStateNormal];
     }
     

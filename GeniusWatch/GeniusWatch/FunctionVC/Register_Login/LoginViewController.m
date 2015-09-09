@@ -9,8 +9,9 @@
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
 
-#define TEXTFIELD_Y         NAVBAR_HEIGHT + 15.0
+#define SPACE_Y             NAVBAR_HEIGHT + 30.0
 #define ADD_Y               10.0
+#define BUTTON_ADD_Y        40.0
 #define SPACE_X             20.0 * CURRENT_SCALE
 #define PWD_BTN_WIDTH       80.0
 #define REGISTE_BTN_SPACE   15.0
@@ -52,13 +53,13 @@
 //添加输入框
 - (void)addTextFields
 {
-    start_y += TEXTFIELD_Y;
+    start_y += SPACE_Y;
     
     _usernameTextField = [CreateViewTool createTextFieldWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 2 * SPACE_X, TEXTFIELD_HEIGHT) textColor:[UIColor blackColor] textFont:FONT(15.0) placeholderText:@"用户名"];
     //_phoneNumberTextField.borderStyle = UITextBorderStyleLine;
     _usernameTextField.keyboardType = UIKeyboardTypeNumberPad;
-    [CommonTool setViewLayer:_usernameTextField withLayerColor:[UIColor lightGrayColor] bordWidth:.5];
-    [CommonTool clipView:_usernameTextField withCornerRadius:15.0];
+    [CommonTool setViewLayer:_usernameTextField withLayerColor:TEXTFIELD_COLOR bordWidth:.5];
+    [CommonTool clipView:_usernameTextField withCornerRadius:TEXTFIELD_RADIUS];
     _usernameTextField.delegate = self;
     _usernameTextField.text = @"15820790320";
     [self.view addSubview:_usernameTextField];
@@ -67,8 +68,8 @@
     
     _passwordTextField = [CreateViewTool createTextFieldWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 2 * SPACE_X, TEXTFIELD_HEIGHT) textColor:[UIColor blackColor] textFont:FONT(15.0) placeholderText:@"密码"];
     //_phoneNumberTextField.borderStyle = UITextBorderStyleLine;
-    [CommonTool setViewLayer:_passwordTextField withLayerColor:[UIColor lightGrayColor] bordWidth:.5];
-    [CommonTool clipView:_passwordTextField withCornerRadius:15.0];
+    [CommonTool setViewLayer:_passwordTextField withLayerColor:TEXTFIELD_COLOR bordWidth:.5];
+    [CommonTool clipView:_passwordTextField withCornerRadius:TEXTFIELD_RADIUS];
     _passwordTextField.delegate = self;
     _passwordTextField.secureTextEntry = YES;
     _passwordTextField.text = @"15820790320";
@@ -81,15 +82,15 @@
 - (void)addButtons
 {
     UIButton *getPasswordButton = [CreateViewTool createButtonWithFrame:CGRectMake(_passwordTextField.frame.size.width + _passwordTextField.frame.origin.x - PWD_BTN_WIDTH, start_y, PWD_BTN_WIDTH, BUTTON_HEIGHT) buttonTitle:@"忘记密码" titleColor:APP_MAIN_COLOR normalBackgroundColor:[UIColor clearColor] highlightedBackgroundColor:nil selectorName:@"getPasswordButtonPrssed:" tagDelegate:self];
-    getPasswordButton.titleLabel.font = FONT(15.0);
+    getPasswordButton.titleLabel.font = BUTTON_FONT;
     getPasswordButton.showsTouchWhenHighlighted = YES;
     [self.view addSubview:getPasswordButton];
     
-    start_y += getPasswordButton.frame.size.height + ADD_Y;
+    start_y += getPasswordButton.frame.size.height + BUTTON_ADD_Y;
     
-    UIButton *loginButton = [CreateViewTool createButtonWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 2 * SPACE_X, BUTTON_HEIGHT) buttonTitle:@"登录" titleColor:[UIColor whiteColor] normalBackgroundColor:APP_MAIN_COLOR highlightedBackgroundColor:[UIColor grayColor] selectorName:@"loginButtonPressed:" tagDelegate:self];
-    [CommonTool setViewLayer:loginButton withLayerColor:[UIColor whiteColor] bordWidth:1.0];
-    [CommonTool clipView:loginButton withCornerRadius:15.0];
+    UIButton *loginButton = [CreateViewTool createButtonWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 2 * SPACE_X, BUTTON_HEIGHT) buttonTitle:@"登录" titleColor:BUTTON_TITLE_COLOR normalBackgroundColor:BUTTON_N_COLOR highlightedBackgroundColor:BUTTON_H_COLOR selectorName:@"loginButtonPressed:" tagDelegate:self];
+    loginButton.titleLabel.font = BUTTON_FONT;
+    [CommonTool clipView:loginButton withCornerRadius:BUTTON_RADIUS];
     [self.view addSubview:loginButton];
     
     

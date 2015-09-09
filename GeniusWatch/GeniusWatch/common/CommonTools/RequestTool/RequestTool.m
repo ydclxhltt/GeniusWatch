@@ -23,7 +23,7 @@
 - (void)requestWithUrl:(NSString *)url requestParamas:(NSDictionary *)paramas requestType:(RequestType)type requestSucess:(void (^)(AFHTTPRequestOperation *operation,id responseDic))sucess requestFail:(void (^)(AFHTTPRequestOperation *operation,NSError *error))fail
 {
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc]init];
-    manager.requestSerializer = [AFHTTPRequestSerializer  serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer  serializer];
     [manager.requestSerializer setValue:@"IOS" forHTTPHeaderField:@"flatform"];
     manager.requestSerializer.timeoutInterval = TIMEOUT;
     manager.responseSerializer = [AFJSONResponseSerializer serializer];

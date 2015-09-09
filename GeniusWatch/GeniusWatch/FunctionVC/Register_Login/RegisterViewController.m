@@ -11,9 +11,10 @@
 
 #define TIP_STRING          @"请先输入您的手机号码\n(注:请用家长手机号码注册账号)"
 #define TIP_STRING1         @"请先输入您的手机号"
-#define TIPLABEL_SPAXCE_Y   NAVBAR_HEIGHT + 15.0
+#define TIPLABEL_SPAXCE_Y   NAVBAR_HEIGHT + 30.0
 #define TIPLABEL_HEIGHT     40.0
-#define ADD_Y               15.0
+
+#define ADD_Y               40.0
 #define SPACE_X             20.0 * CURRENT_SCALE
 
 #define LOADING             @"正在验证..."
@@ -41,43 +42,44 @@
 #pragma mark 初始化UI
 - (void)initUI
 {
-    [self addTipLabel];
+    start_y = TIPLABEL_SPAXCE_Y;
+    //[self addTipLabel];
     [self addTextField];
     [self addNextButton];
 }
 
 //添加提示
-- (void)addTipLabel
-{
-    NSString *tipString = (self.pushType == PushTypeRegister)? TIP_STRING : TIP_STRING1;
-    UILabel *tipLabel = [CreateViewTool createLabelWithFrame:CGRectMake(0, TIPLABEL_SPAXCE_Y, self.view.frame.size.width, TIPLABEL_HEIGHT) textString:tipString textColor:[UIColor blackColor] textFont:FONT(15.0)];
-    tipLabel.numberOfLines = (self.pushType == PushTypeRegister) ? 2 : 1;
-    tipLabel.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:tipLabel];
-    
-    start_y = tipLabel.frame.origin.y + tipLabel.frame.size.height + ADD_Y;
-}
+//- (void)addTipLabel
+//{
+//    NSString *tipString = (self.pushType == PushTypeRegister)? TIP_STRING : TIP_STRING1;
+//    UILabel *tipLabel = [CreateViewTool createLabelWithFrame:CGRectMake(0, TIPLABEL_SPAXCE_Y, self.view.frame.size.width, TIPLABEL_HEIGHT) textString:tipString textColor:[UIColor blackColor] textFont:FONT(15.0)];
+//    tipLabel.numberOfLines = (self.pushType == PushTypeRegister) ? 2 : 1;
+//    tipLabel.textAlignment = NSTextAlignmentCenter;
+//    [self.view addSubview:tipLabel];
+//    
+//    start_y = tipLabel.frame.origin.y + tipLabel.frame.size.height + ADD_Y;
+//}
 
 //添加输入框
 - (void)addTextField
 {
-    _phoneNumberTextField = [CreateViewTool createTextFieldWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 2 * SPACE_X, TEXTFIELD_HEIGHT) textColor:[UIColor blackColor] textFont:FONT(16.0) placeholderText:@"您的手机号码"];
+    _phoneNumberTextField = [CreateViewTool createTextFieldWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 2 * SPACE_X, TEXTFIELD_HEIGHT) textColor:[UIColor blackColor] textFont:TEXTFIELD_FONT placeholderText:@"您的手机号码"];
     //_phoneNumberTextField.borderStyle = UITextBorderStyleLine;
-    [CommonTool setViewLayer:_phoneNumberTextField withLayerColor:[UIColor lightGrayColor] bordWidth:.5];
-    [CommonTool clipView:_phoneNumberTextField withCornerRadius:15.0];
+    [CommonTool setViewLayer:_phoneNumberTextField withLayerColor:TEXTFIELD_COLOR bordWidth:.5];
+    [CommonTool clipView:_phoneNumberTextField withCornerRadius:TEXTFIELD_RADIUS];
     _phoneNumberTextField.keyboardType = UIKeyboardTypeNumberPad;
     _phoneNumberTextField.delegate = self;
     [self.view addSubview:_phoneNumberTextField];
-    
     start_y += _phoneNumberTextField.frame.size.height + ADD_Y;
 }
 
 //添加下一步按钮
 - (void)addNextButton
 {
-    UIButton *nextButton = [CreateViewTool createButtonWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 2 * SPACE_X, BUTTON_HEIGHT) buttonTitle:@"下一步" titleColor:[UIColor whiteColor] normalBackgroundColor:APP_MAIN_COLOR highlightedBackgroundColor:[UIColor grayColor] selectorName:@"nextButtonPressed:" tagDelegate:self];
-    [CommonTool setViewLayer:nextButton withLayerColor:[UIColor lightGrayColor] bordWidth:.5];
-    [CommonTool clipView:nextButton withCornerRadius:15.0];
+
+    UIButton *nextButton = [CreateViewTool createButtonWithFrame:CGRectMake(SPACE_X, start_y, self.view.frame.size.width - 2 * SPACE_X, BUTTON_HEIGHT) buttonTitle:@"下一步" titleColor:BUTTON_TITLE_COLOR normalBackgroundColor:BUTTON_N_COLOR highlightedBackgroundColor:BUTTON_H_COLOR selectorName:@"nextButtonPressed:" tagDelegate:self];
+    nextButton.titleLabel.font = BUTTON_FONT;
+    [CommonTool clipView:nextButton withCornerRadius:BUTTON_RADIUS];
     [self.view addSubview:nextButton];
 }
 
@@ -94,9 +96,7 @@
         //下一步
         [_phoneNumberTextField resignFirstResponder];
         [self checkPhoneNumber];
-        UIImageView *image = [[UIImageView alloc] init];
-        
-        
+        [self gotoGetCode];
     }
 }
 
@@ -122,7 +122,7 @@
                               if ([@"0" isEqualToString:errorCode])
                               {
                                   [SVProgressHUD showSuccessWithStatus:LOADING_SUCESS];
-                                  [weakSelf gotoCheckCode];
+                                  [weakSelf gotoGetCode];
                               }
                               else
                               {
@@ -131,13 +131,14 @@
                           }
                           requestFail:^(AFHTTPRequestOperation *operation, NSError *error)
                           {
+                               NSLog(@"CHECK_PHONENUMBER——error===%@",error);
                               [SVProgressHUD showErrorWithStatus:LOADING_FAIL];
                           }];
 }
 
 
 #pragma mark 跳转到获取验证码
-- (void)gotoCheckCode
+- (void)gotoGetCode
 {
     CheckCodeViewController *checkViewController = [[CheckCodeViewController alloc] init];
     checkViewController.pushType = self.pushType;

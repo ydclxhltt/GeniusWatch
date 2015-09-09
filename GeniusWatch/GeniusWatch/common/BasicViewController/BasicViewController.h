@@ -9,7 +9,16 @@
 #import <UIKit/UIKit.h>
 
 #define TEXTFIELD_HEIGHT    35.0
-#define BUTTON_HEIGHT       35.0
+#define BUTTON_HEIGHT       40.0
+#define BUTTON_RADIUS       5.0
+#define TEXTFIELD_RADIUS    5.0
+#define BUTTON_FONT         FONT(16.0)
+#define TEXTFIELD_FONT      FONT(16.0)
+#define TEXTFIELD_COLOR     RGB(86.0,86.0,86.0)
+#define BUTTON_N_COLOR      APP_MAIN_COLOR
+#define BUTTON_H_COLOR      [UIColor grayColor]
+#define BUTTON_TITLE_COLOR  [UIColor whiteColor]
+//#define TEXTFIELD_COLOR     APP_MAIN_COLOR
 
 typedef enum : NSUInteger
 {
