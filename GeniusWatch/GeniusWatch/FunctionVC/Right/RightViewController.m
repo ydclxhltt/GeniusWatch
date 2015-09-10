@@ -8,6 +8,10 @@
 
 #import "RightViewController.h"
 #import "SettingViewController.h"
+#import "TelephoneChargeViewController.h"
+#import "LinkManListViewController.h"
+#import "MessageListViewController.h"
+#import "AfterServiceViewController.h"
 
 #define SPACE_Y       100.0 * CURRENT_SCALE
 #define TITLE_HEIGHT  20.0
@@ -67,13 +71,25 @@
 - (void)buttonPressed:(UIButton *)sender
 {
     int tag = (int)sender.tag;
-    SettingViewController *viewController;
+    UIViewController *viewController;
     switch (tag)
     {
+        
+        case 1:
+            viewController = [[LinkManListViewController alloc] init];
+            break;
+        case 2:
+            viewController = [[MessageListViewController alloc] init];
+            break;
+        case 3:
+            viewController = [[TelephoneChargeViewController alloc] init];
+            break;
         case 4:
             viewController = [[SettingViewController alloc] init];
             break;
-            
+        case 5:
+            viewController = [[AfterServiceViewController alloc] init];
+            break;
         default:
             break;
     }
